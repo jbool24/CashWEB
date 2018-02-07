@@ -29,8 +29,3 @@ def login():
     #                             title='Welcome {}'.format(user),
     #                             sitename=SITE_NAME)
     return render_template("login.html", title="Login")
-
-
-@urls.route('/flot')
-def flot():
-    return render_template("flot.html", title='Flot Charts')

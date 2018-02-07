@@ -25,7 +25,7 @@ app = Flask(
     template_folder='../client/templates',
     static_folder='../client/static'
 )
-print(app)
+
 app_settings = os.getenv('APP_SETTINGS', DevelopmentConfig)
 app.config.from_object(app_settings)
 

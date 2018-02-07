@@ -53,11 +53,12 @@ def login():
                 request.form['password'], user.password):
             login_user(user)
             flash('You are logged in. Welcome!', 'success')
-            return redirect(url_for('user.members'))
+            return redirect(url_for('app_shell.shell'))
         else:
             flash('Invalid email and/or password.', 'danger')
             return render_template('security/login_user.html',
                                    login_user_form=form)
+
     return render_template('security/login_user.html',
                            title='Please Login',
                            login_user_form=form)
@@ -77,7 +78,7 @@ def members():
     return render_template('app_shell/members.html')
 
 
-@user_blueprint.route('/members/main')
+@user_blueprint.route('/cash')
 @login_required
-def app_page():
-    return render_template('app_shell/main.html')
+def app_shell():
+    return render_template('app_shell/shell.html')

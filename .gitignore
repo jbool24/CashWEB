@@ -1,0 +1,17 @@
+# Editor files
+.vscode
+
+# Environment
+venv
+.env
+
+# Python Files
+__pycache__
+*.py[cod]
+
+
+node_modules
+
+cashweb/client/sbadmin-template
+
+ *.db
