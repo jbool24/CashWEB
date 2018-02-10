@@ -7,6 +7,7 @@ import coverage
 
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
+from cashweb.config import ADMIN
 
 
 COV = coverage.coverage(
@@ -77,8 +78,8 @@ def create_admin():
     role = user_datastore.create_role(name='admin',
                                       description='Application Administrator')
     user = user_datastore.create_user(email='admin@email.com',
-                                      password='admin24',
-                                      active=True)
+                                      password=ADMIN['ADMIN_PW'],
+                                      active=1)
     user_datastore.add_role_to_user(user, role)
     db.session.commit()
 

@@ -4,8 +4,6 @@
 import os
 
 from flask import render_template, Blueprint, url_for, redirect, flash, request
-# from flask_login import login_user, logout_user, login_required
-# from cashweb.server import bcrypt
 from flask_security import login_required, login_user, logout_user
 from flask_security import LoginForm, RegisterForm
 from cashweb.server import db, app, user_datastore
@@ -13,11 +11,12 @@ from cashweb.server import db, app, user_datastore
 from cashweb.server.models import User
 from cashweb.server import security
 
+
 ################
 #### config ####
 ################
 
-user_blueprint = Blueprint('app_shell', __name__,)
+user_blueprint = Blueprint('user', __name__)
 
 
 ################
@@ -70,15 +69,3 @@ def logout():
     logout_user()
     flash('You were logged out. Bye!', 'success')
     return redirect(url_for('main.home'))
-
-
-@user_blueprint.route('/members')
-@login_required
-def members():
-    return render_template('app_shell/members.html')
-
-
-@user_blueprint.route('/cash')
-@login_required
-def app_shell():
-    return render_template('app_shell/shell.html')
