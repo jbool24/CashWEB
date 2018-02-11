@@ -19,7 +19,7 @@ SITE_NAME = "CashWeb"
 # ADD INIT USERNAME FOR ADMIN FOR FIRST_TIME USE
 ADMIN = {
     'ADMIN_USER': 'admin',
-    'ADMIN_PW': 'admin'
+    'ADMIN_PW': 'admin24'
 }
 
 

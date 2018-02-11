@@ -9,6 +9,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const paths = {
   DIST: path.resolve(__dirname, '../../static'),
   SRC: path.resolve(__dirname, '../../src'),
+  HTML: path.resolve(__dirname, '../../templates')
 };
 
 module.exports = () => {
@@ -17,10 +18,10 @@ module.exports = () => {
         entry: {
             'main': './app',
             'vendor': ['react', 'react-dom'],
-            'style': './sass/main.sass',
+            'style': './sass/main.scss',
         },
         resolve: {
-            extensions: ['.sass', '.js', '.json'],
+            extensions: ['.sass','.scss', '.js', '.json'],
             modules: [paths.SRC, 'node_modules'],
         },
         module: {
@@ -41,7 +42,7 @@ module.exports = () => {
                     fallback: 'style-loader',
                     use: [
                         { loader: 'css-loader', query: { modules: false, sourceMaps: true} },
-                        { loader: 'sass-loader', query: { modules: false, sourceMaps: true } },
+                        { loader: 'sass-loader', query: { modules: true, sourceMaps: true } },
                     ]
                 })
             }, {
@@ -58,7 +59,7 @@ module.exports = () => {
                 minChunks: Infinity
             }),
             new HtmlWebpackPlugin({
-              template: path.join(paths.SRC, './app_shell.html'),
+              template: path.join(paths.HTML, './_base.html'),
               filename: '../templates/app_shell/shell.html',
               inject: 'body',
             }),

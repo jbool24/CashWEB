@@ -8,14 +8,14 @@ import React from 'react';
 
 
 export default class Nav extends React.Component {
-  constructor (props) {
-      super(props);
-      this.state = {};
-  }
+  // constructor (props) {
+  //     super(props);
+  //     this.state = {};
+  // }
 
   render() {
     return (
-      <div>
+      <ul class="nav navbar-nav navbar-right">
             <li className="dropdown">
                 <a className="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i className="fa fa-envelope fa-fw"></i> <i className="fa fa-caret-down"></i>
@@ -222,7 +222,7 @@ export default class Nav extends React.Component {
                 {/* /.dropdown-user */}
             </li>
             {/* /.dropdown */}
-      </div>
+      </ul>
     );
   }
 }

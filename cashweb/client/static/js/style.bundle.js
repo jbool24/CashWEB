@@ -1,8 +1,8 @@
 webpackJsonp([2],{
 
-/***/ 62:
+/***/ 78:
 /*!************************!*\
-  !*** ./sass/main.sass ***!
+  !*** ./sass/main.scss ***!
   \************************/
 /*! dynamic exports provided */
 /*! all exports used */
@@ -12,5 +12,5 @@ webpackJsonp([2],{
 
 /***/ })
 
-},[62]);
+},[78]);
 //# sourceMappingURL=style.map

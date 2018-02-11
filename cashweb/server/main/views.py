@@ -6,7 +6,7 @@
 #################
 
 from flask import render_template, Blueprint
-
+from flask_security import login_required
 ################
 #### config ####
 ################
@@ -27,3 +27,15 @@ def home():
 @main_blueprint.route('/about')
 def about():
     return render_template('main/about.html')
+
+
+@main_blueprint.route('/members')
+@login_required
+def members():
+    return render_template('app_shell/members.html')
+
+
+@main_blueprint.route('/cash')
+@login_required
+def shell():
+    return render_template('app_shell/shell.html')

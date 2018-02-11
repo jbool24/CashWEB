@@ -7,6 +7,12 @@ const commonConfigs = require('./base.js');
 
 module.exports = function(env) {
     return webpackMerge(commonConfigs(), {
+        output: {
+          path: path.join(__dirname, '../../static/'),
+          filename: 'js/[name].bundle.js',
+          publicPath: '../../static/',
+          sourceMapFilename: 'js/[name].map'
+        },
         plugins: [
             new webpack.LoaderOptionsPlugin({
                 minimize: true,

@@ -1,16 +1,20 @@
 {% extends "main/home.html" %}
 {% from "security/_macros.html" import render_field_with_errors, render_field %}
-{% include "security/_messages.html" %}
 {% block authblock %}
-<h1>Register</h1>
+<header class="content-header">
+  <h1>Please Register</h1>
+</header>
+<br>
 <form action="{{ url_for('user.register') }}" method="POST" name="register_user_form">
-  {{ register_user_form.hidden_tag() }}
-  {{ render_field_with_errors(register_user_form.email) }}
-  {{ render_field_with_errors(register_user_form.password) }}
-  {% if register_user_form.password_confirm %}
-    {{ render_field_with_errors(register_user_form.password_confirm) }}
-  {% endif %}
-  {{ render_field(register_user_form.submit, class="btn btn-primary") }}
+    {{ register_user_form.hidden_tag() }}
+    {{ render_field_with_errors(register_user_form.email) }}
+    {{ render_field_with_errors(register_user_form.password) }}
+    {% if register_user_form.password_confirm %}
+      {{ render_field_with_errors(register_user_form.password_confirm) }}
+    {% endif %}
+    {{ render_field(register_user_form.submit, class="btn btn-primary") }}
+    <br>
+    <p>Already have an account? <a href="{{ url_for('user.login') }}">Sign in</a>.</p>
 </form>
 {% include "security/_menu.html" %}
 {% endblock %}

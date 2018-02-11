@@ -1,7 +1,6 @@
 webpackJsonp([0],[
 /* 0 */,
-/* 1 */,
-/* 2 */
+/* 1 */
 /*!*****************************************!*\
   !*** ./node_modules/warning/browser.js ***!
   \*****************************************/
@@ -63,11 +62,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = warning;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 2)))
 
 /***/ }),
-/* 3 */,
-/* 4 */
+/* 2 */,
+/* 3 */
 /*!******************************************!*\
   !*** ./node_modules/prop-types/index.js ***!
   \******************************************/
@@ -97,16 +96,16 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ 43)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ 49)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(/*! ./factoryWithThrowingShims */ 44)();
+  module.exports = __webpack_require__(/*! ./factoryWithThrowingShims */ 50)();
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 2)))
 
 /***/ }),
-/* 5 */
+/* 4 */
 /*!*******************************************!*\
   !*** ./node_modules/invariant/browser.js ***!
   \*******************************************/
@@ -163,12 +162,84 @@ var invariant = function invariant(condition, format, a, b, c, d, e, f) {
 };
 
 module.exports = invariant;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 2)))
 
 /***/ }),
+/* 5 */,
 /* 6 */,
 /* 7 */,
 /* 8 */
+/*!*******************************************!*\
+  !*** ./node_modules/history/PathUtils.js ***!
+  \*******************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+var addLeadingSlash = exports.addLeadingSlash = function addLeadingSlash(path) {
+  return path.charAt(0) === '/' ? path : '/' + path;
+};
+
+var stripLeadingSlash = exports.stripLeadingSlash = function stripLeadingSlash(path) {
+  return path.charAt(0) === '/' ? path.substr(1) : path;
+};
+
+var hasBasename = exports.hasBasename = function hasBasename(path, prefix) {
+  return new RegExp('^' + prefix + '(\\/|\\?|#|$)', 'i').test(path);
+};
+
+var stripBasename = exports.stripBasename = function stripBasename(path, prefix) {
+  return hasBasename(path, prefix) ? path.substr(prefix.length) : path;
+};
+
+var stripTrailingSlash = exports.stripTrailingSlash = function stripTrailingSlash(path) {
+  return path.charAt(path.length - 1) === '/' ? path.slice(0, -1) : path;
+};
+
+var parsePath = exports.parsePath = function parsePath(path) {
+  var pathname = path || '/';
+  var search = '';
+  var hash = '';
+
+  var hashIndex = pathname.indexOf('#');
+  if (hashIndex !== -1) {
+    hash = pathname.substr(hashIndex);
+    pathname = pathname.substr(0, hashIndex);
+  }
+
+  var searchIndex = pathname.indexOf('?');
+  if (searchIndex !== -1) {
+    search = pathname.substr(searchIndex);
+    pathname = pathname.substr(0, searchIndex);
+  }
+
+  return {
+    pathname: pathname,
+    search: search === '?' ? '' : search,
+    hash: hash === '#' ? '' : hash
+  };
+};
+
+var createPath = exports.createPath = function createPath(location) {
+  var pathname = location.pathname,
+      search = location.search,
+      hash = location.hash;
+
+  var path = pathname || '/';
+
+  if (search && search !== '?') path += search.charAt(0) === '?' ? search : '?' + search;
+
+  if (hash && hash !== '#') path += hash.charAt(0) === '#' ? hash : '#' + hash;
+
+  return path;
+};
+
+/***/ }),
+/* 9 */
 /*!**********************************************!*\
   !*** ./node_modules/history/es/PathUtils.js ***!
   \**********************************************/
@@ -241,9 +312,9 @@ var createPath = exports.createPath = function createPath(location) {
 };
 
 /***/ }),
-/* 9 */,
 /* 10 */,
-/* 11 */
+/* 11 */,
+/* 12 */
 /*!**************************************************!*\
   !*** ./node_modules/history/es/LocationUtils.js ***!
   \**************************************************/
@@ -259,15 +330,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.locationsAreEqual = exports.createLocation = undefined;
 
-var _resolvePathname = __webpack_require__(/*! resolve-pathname */ 25);
+var _resolvePathname = __webpack_require__(/*! resolve-pathname */ 28);
 
 var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 
-var _valueEqual = __webpack_require__(/*! value-equal */ 26);
+var _valueEqual = __webpack_require__(/*! value-equal */ 29);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-var _PathUtils = __webpack_require__(/*! ./PathUtils */ 8);
+var _PathUtils = __webpack_require__(/*! ./PathUtils */ 9);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -342,12 +413,13 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 };
 
 /***/ }),
-/* 12 */,
 /* 13 */,
-/* 14 */
-/*!*******************************************!*\
-  !*** ./node_modules/history/PathUtils.js ***!
-  \*******************************************/
+/* 14 */,
+/* 15 */,
+/* 16 */
+/*!***********************************************!*\
+  !*** ./node_modules/history/LocationUtils.js ***!
+  \***********************************************/
 /*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
@@ -356,66 +428,216 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 
 
 exports.__esModule = true;
-var addLeadingSlash = exports.addLeadingSlash = function addLeadingSlash(path) {
-  return path.charAt(0) === '/' ? path : '/' + path;
+exports.locationsAreEqual = exports.createLocation = undefined;
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
 };
 
-var stripLeadingSlash = exports.stripLeadingSlash = function stripLeadingSlash(path) {
-  return path.charAt(0) === '/' ? path.substr(1) : path;
-};
+var _resolvePathname = __webpack_require__(/*! resolve-pathname */ 28);
 
-var hasBasename = exports.hasBasename = function hasBasename(path, prefix) {
-  return new RegExp('^' + prefix + '(\\/|\\?|#|$)', 'i').test(path);
-};
+var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 
-var stripBasename = exports.stripBasename = function stripBasename(path, prefix) {
-  return hasBasename(path, prefix) ? path.substr(prefix.length) : path;
-};
+var _valueEqual = __webpack_require__(/*! value-equal */ 29);
 
-var stripTrailingSlash = exports.stripTrailingSlash = function stripTrailingSlash(path) {
-  return path.charAt(path.length - 1) === '/' ? path.slice(0, -1) : path;
-};
+var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-var parsePath = exports.parsePath = function parsePath(path) {
-  var pathname = path || '/';
-  var search = '';
-  var hash = '';
+var _PathUtils = __webpack_require__(/*! ./PathUtils */ 8);
 
-  var hashIndex = pathname.indexOf('#');
-  if (hashIndex !== -1) {
-    hash = pathname.substr(hashIndex);
-    pathname = pathname.substr(0, hashIndex);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var createLocation = exports.createLocation = function createLocation(path, state, key, currentLocation) {
+  var location = void 0;
+  if (typeof path === 'string') {
+    // Two-arg form: push(path, state)
+    location = (0, _PathUtils.parsePath)(path);
+    location.state = state;
+  } else {
+    // One-arg form: push(location)
+    location = _extends({}, path);
+
+    if (location.pathname === undefined) location.pathname = '';
+
+    if (location.search) {
+      if (location.search.charAt(0) !== '?') location.search = '?' + location.search;
+    } else {
+      location.search = '';
+    }
+
+    if (location.hash) {
+      if (location.hash.charAt(0) !== '#') location.hash = '#' + location.hash;
+    } else {
+      location.hash = '';
+    }
+
+    if (state !== undefined && location.state === undefined) location.state = state;
   }
 
-  var searchIndex = pathname.indexOf('?');
-  if (searchIndex !== -1) {
-    search = pathname.substr(searchIndex);
-    pathname = pathname.substr(0, searchIndex);
+  try {
+    location.pathname = decodeURI(location.pathname);
+  } catch (e) {
+    if (e instanceof URIError) {
+      throw new URIError('Pathname "' + location.pathname + '" could not be decoded. ' + 'This is likely caused by an invalid percent-encoding.');
+    } else {
+      throw e;
+    }
   }
 
-  return {
-    pathname: pathname,
-    search: search === '?' ? '' : search,
-    hash: hash === '#' ? '' : hash
-  };
+  if (key) location.key = key;
+
+  if (currentLocation) {
+    // Resolve incomplete/relative pathname relative to current location.
+    if (!location.pathname) {
+      location.pathname = currentLocation.pathname;
+    } else if (location.pathname.charAt(0) !== '/') {
+      location.pathname = (0, _resolvePathname2.default)(location.pathname, currentLocation.pathname);
+    }
+  } else {
+    // When there is no prior location and pathname is empty, set it to /
+    if (!location.pathname) {
+      location.pathname = '/';
+    }
+  }
+
+  return location;
 };
 
-var createPath = exports.createPath = function createPath(location) {
-  var pathname = location.pathname,
-      search = location.search,
-      hash = location.hash;
-
-  var path = pathname || '/';
-
-  if (search && search !== '?') path += search.charAt(0) === '?' ? search : '?' + search;
-
-  if (hash && hash !== '#') path += hash.charAt(0) === '#' ? hash : '#' + hash;
-
-  return path;
+var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a, b) {
+  return a.pathname === b.pathname && a.search === b.search && a.hash === b.hash && a.key === b.key && (0, _valueEqual2.default)(a.state, b.state);
 };
 
 /***/ }),
-/* 15 */
+/* 17 */
+/*!*********************************************************!*\
+  !*** ./node_modules/history/createTransitionManager.js ***!
+  \*********************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _warning = __webpack_require__(/*! warning */ 1);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var createTransitionManager = function createTransitionManager() {
+  var prompt = null;
+
+  var setPrompt = function setPrompt(nextPrompt) {
+    (0, _warning2.default)(prompt == null, 'A history supports only one prompt at a time');
+
+    prompt = nextPrompt;
+
+    return function () {
+      if (prompt === nextPrompt) prompt = null;
+    };
+  };
+
+  var confirmTransitionTo = function confirmTransitionTo(location, action, getUserConfirmation, callback) {
+    // TODO: If another transition starts while we're still confirming
+    // the previous one, we may end up in a weird state. Figure out the
+    // best way to handle this.
+    if (prompt != null) {
+      var result = typeof prompt === 'function' ? prompt(location, action) : prompt;
+
+      if (typeof result === 'string') {
+        if (typeof getUserConfirmation === 'function') {
+          getUserConfirmation(result, callback);
+        } else {
+          (0, _warning2.default)(false, 'A history needs a getUserConfirmation function in order to use a prompt message');
+
+          callback(true);
+        }
+      } else {
+        // Return false from a transition hook to cancel the transition.
+        callback(result !== false);
+      }
+    } else {
+      callback(true);
+    }
+  };
+
+  var listeners = [];
+
+  var appendListener = function appendListener(fn) {
+    var isActive = true;
+
+    var listener = function listener() {
+      if (isActive) fn.apply(undefined, arguments);
+    };
+
+    listeners.push(listener);
+
+    return function () {
+      isActive = false;
+      listeners = listeners.filter(function (item) {
+        return item !== listener;
+      });
+    };
+  };
+
+  var notifyListeners = function notifyListeners() {
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    listeners.forEach(function (listener) {
+      return listener.apply(undefined, args);
+    });
+  };
+
+  return {
+    setPrompt: setPrompt,
+    confirmTransitionTo: confirmTransitionTo,
+    appendListener: appendListener,
+    notifyListeners: notifyListeners
+  };
+};
+
+exports.default = createTransitionManager;
+
+/***/ }),
+/* 18 */
+/*!****************************************************!*\
+  !*** ./node_modules/react-router-dom/es/Router.js ***!
+  \****************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Router = __webpack_require__(/*! react-router/es/Router */ 19);
+
+var _Router2 = _interopRequireDefault(_Router);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Router2.default; // Written in this round about way for babel-transform-imports
+
+/***/ }),
+/* 19 */
 /*!************************************************!*\
   !*** ./node_modules/react-router/es/Router.js ***!
   \************************************************/
@@ -432,11 +654,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _warning = __webpack_require__(/*! warning */ 2);
+var _warning = __webpack_require__(/*! warning */ 1);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(/*! invariant */ 5);
+var _invariant = __webpack_require__(/*! invariant */ 4);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -444,7 +666,7 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(/*! prop-types */ 4);
+var _propTypes = __webpack_require__(/*! prop-types */ 3);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -570,7 +792,97 @@ Router.childContextTypes = {
 exports.default = Router;
 
 /***/ }),
-/* 16 */
+/* 20 */
+/*!***************************************************!*\
+  !*** ./node_modules/react-router/es/matchPath.js ***!
+  \***************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _pathToRegexp = __webpack_require__(/*! path-to-regexp */ 58);
+
+var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var patternCache = {};
+var cacheLimit = 10000;
+var cacheCount = 0;
+
+var compilePath = function compilePath(pattern, options) {
+  var cacheKey = '' + options.end + options.strict + options.sensitive;
+  var cache = patternCache[cacheKey] || (patternCache[cacheKey] = {});
+
+  if (cache[pattern]) return cache[pattern];
+
+  var keys = [];
+  var re = (0, _pathToRegexp2.default)(pattern, keys, options);
+  var compiledPattern = { re: re, keys: keys };
+
+  if (cacheCount < cacheLimit) {
+    cache[pattern] = compiledPattern;
+    cacheCount++;
+  }
+
+  return compiledPattern;
+};
+
+/**
+ * Public API for matching a URL pathname to a path pattern.
+ */
+var matchPath = function matchPath(pathname) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+  if (typeof options === 'string') options = { path: options };
+
+  var _options = options,
+      _options$path = _options.path,
+      path = _options$path === undefined ? '/' : _options$path,
+      _options$exact = _options.exact,
+      exact = _options$exact === undefined ? false : _options$exact,
+      _options$strict = _options.strict,
+      strict = _options$strict === undefined ? false : _options$strict,
+      _options$sensitive = _options.sensitive,
+      sensitive = _options$sensitive === undefined ? false : _options$sensitive;
+
+  var _compilePath = compilePath(path, { end: exact, strict: strict, sensitive: sensitive }),
+      re = _compilePath.re,
+      keys = _compilePath.keys;
+
+  var match = re.exec(pathname);
+
+  if (!match) return null;
+
+  var url = match[0],
+      values = match.slice(1);
+
+  var isExact = pathname === url;
+
+  if (exact && !isExact) return null;
+
+  return {
+    path: path, // the path pattern used to match
+    url: path === '/' && url === '' ? '/' : url, // the matched portion of the URL
+    isExact: isExact, // whether or not we matched exactly
+    params: keys.reduce(function (memo, key, index) {
+      memo[key.name] = values[index];
+      return memo;
+    }, {})
+  };
+};
+
+exports.default = matchPath;
+
+/***/ }),
+/* 21 */
 /*!************************************************************!*\
   !*** ./node_modules/history/es/createTransitionManager.js ***!
   \************************************************************/
@@ -585,7 +897,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _warning = __webpack_require__(/*! warning */ 2);
+var _warning = __webpack_require__(/*! warning */ 1);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -668,104 +980,13 @@ var createTransitionManager = function createTransitionManager() {
 exports.default = createTransitionManager;
 
 /***/ }),
-/* 17 */
-/*!***************************************************!*\
-  !*** ./node_modules/react-router/es/matchPath.js ***!
-  \***************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _pathToRegexp = __webpack_require__(/*! path-to-regexp */ 54);
-
-var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var patternCache = {};
-var cacheLimit = 10000;
-var cacheCount = 0;
-
-var compilePath = function compilePath(pattern, options) {
-  var cacheKey = '' + options.end + options.strict + options.sensitive;
-  var cache = patternCache[cacheKey] || (patternCache[cacheKey] = {});
-
-  if (cache[pattern]) return cache[pattern];
-
-  var keys = [];
-  var re = (0, _pathToRegexp2.default)(pattern, keys, options);
-  var compiledPattern = { re: re, keys: keys };
-
-  if (cacheCount < cacheLimit) {
-    cache[pattern] = compiledPattern;
-    cacheCount++;
-  }
-
-  return compiledPattern;
-};
-
-/**
- * Public API for matching a URL pathname to a path pattern.
- */
-var matchPath = function matchPath(pathname) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-  if (typeof options === 'string') options = { path: options };
-
-  var _options = options,
-      _options$path = _options.path,
-      path = _options$path === undefined ? '/' : _options$path,
-      _options$exact = _options.exact,
-      exact = _options$exact === undefined ? false : _options$exact,
-      _options$strict = _options.strict,
-      strict = _options$strict === undefined ? false : _options$strict,
-      _options$sensitive = _options.sensitive,
-      sensitive = _options$sensitive === undefined ? false : _options$sensitive;
-
-  var _compilePath = compilePath(path, { end: exact, strict: strict, sensitive: sensitive }),
-      re = _compilePath.re,
-      keys = _compilePath.keys;
-
-  var match = re.exec(pathname);
-
-  if (!match) return null;
-
-  var url = match[0],
-      values = match.slice(1);
-
-  var isExact = pathname === url;
-
-  if (exact && !isExact) return null;
-
-  return {
-    path: path, // the path pattern used to match
-    url: path === '/' && url === '' ? '/' : url, // the matched portion of the URL
-    isExact: isExact, // whether or not we matched exactly
-    params: keys.reduce(function (memo, key, index) {
-      memo[key.name] = values[index];
-      return memo;
-    }, {})
-  };
-};
-
-exports.default = matchPath;
-
-/***/ }),
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
 /* 22 */,
 /* 23 */,
 /* 24 */,
-/* 25 */
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */
 /*!************************************************!*\
   !*** ./node_modules/resolve-pathname/index.js ***!
   \************************************************/
@@ -851,7 +1072,7 @@ function resolvePathname(to) {
 exports.default = resolvePathname;
 
 /***/ }),
-/* 26 */
+/* 29 */
 /*!*******************************************!*\
   !*** ./node_modules/value-equal/index.js ***!
   \*******************************************/
@@ -912,10 +1133,10 @@ function valueEqual(a, b) {
 exports.default = valueEqual;
 
 /***/ }),
-/* 27 */
-/*!*********************************************!*\
-  !*** ./node_modules/history/es/DOMUtils.js ***!
-  \*********************************************/
+/* 30 */
+/*!******************************************!*\
+  !*** ./node_modules/history/DOMUtils.js ***!
+  \******************************************/
 /*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
@@ -923,9 +1144,7 @@ exports.default = valueEqual;
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+exports.__esModule = true;
 var canUseDOM = exports.canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
 var addEventListener = exports.addEventListener = function addEventListener(node, event, listener) {
@@ -980,7 +1199,180 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 };
 
 /***/ }),
-/* 28 */
+/* 31 */
+/*!**************************************************!*\
+  !*** ./node_modules/react-router-dom/es/Link.js ***!
+  \**************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _react = __webpack_require__(/*! react */ 0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ 3);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _invariant = __webpack_require__(/*! invariant */ 4);
+
+var _invariant2 = _interopRequireDefault(_invariant);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+var isModifiedEvent = function isModifiedEvent(event) {
+  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+};
+
+/**
+ * The public API for rendering a history-aware <a>.
+ */
+
+var Link = function (_React$Component) {
+  _inherits(Link, _React$Component);
+
+  function Link() {
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Link);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleClick = function (event) {
+      if (_this.props.onClick) _this.props.onClick(event);
+
+      if (!event.defaultPrevented && // onClick prevented default
+      event.button === 0 && // ignore right clicks
+      !_this.props.target && // let browser handle "target=_blank" etc.
+      !isModifiedEvent(event) // ignore clicks with modifier keys
+      ) {
+          event.preventDefault();
+
+          var history = _this.context.router.history;
+          var _this$props = _this.props,
+              replace = _this$props.replace,
+              to = _this$props.to;
+
+          if (replace) {
+            history.replace(to);
+          } else {
+            history.push(to);
+          }
+        }
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  Link.prototype.render = function render() {
+    var _props = this.props,
+        replace = _props.replace,
+        to = _props.to,
+        innerRef = _props.innerRef,
+        props = _objectWithoutProperties(_props, ['replace', 'to', 'innerRef']); // eslint-disable-line no-unused-vars
+
+    (0, _invariant2.default)(this.context.router, 'You should not use <Link> outside a <Router>');
+
+    var href = this.context.router.history.createHref(typeof to === 'string' ? { pathname: to } : to);
+
+    return _react2.default.createElement('a', _extends({}, props, { onClick: this.handleClick, href: href, ref: innerRef }));
+  };
+
+  return Link;
+}(_react2.default.Component);
+
+Link.propTypes = {
+  onClick: _propTypes2.default.func,
+  target: _propTypes2.default.string,
+  replace: _propTypes2.default.bool,
+  to: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]).isRequired,
+  innerRef: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.func])
+};
+Link.defaultProps = {
+  replace: false
+};
+Link.contextTypes = {
+  router: _propTypes2.default.shape({
+    history: _propTypes2.default.shape({
+      push: _propTypes2.default.func.isRequired,
+      replace: _propTypes2.default.func.isRequired,
+      createHref: _propTypes2.default.func.isRequired
+    }).isRequired
+  }).isRequired
+};
+
+exports.default = Link;
+
+/***/ }),
+/* 32 */
+/*!***************************************************!*\
+  !*** ./node_modules/react-router-dom/es/Route.js ***!
+  \***************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Route = __webpack_require__(/*! react-router/es/Route */ 33);
+
+var _Route2 = _interopRequireDefault(_Route);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Route2.default; // Written in this round about way for babel-transform-imports
+
+/***/ }),
+/* 33 */
 /*!***********************************************!*\
   !*** ./node_modules/react-router/es/Route.js ***!
   \***********************************************/
@@ -997,11 +1389,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _warning = __webpack_require__(/*! warning */ 2);
+var _warning = __webpack_require__(/*! warning */ 1);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(/*! invariant */ 5);
+var _invariant = __webpack_require__(/*! invariant */ 4);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -1009,11 +1401,11 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(/*! prop-types */ 4);
+var _propTypes = __webpack_require__(/*! prop-types */ 3);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _matchPath = __webpack_require__(/*! ./matchPath */ 17);
+var _matchPath = __webpack_require__(/*! ./matchPath */ 20);
 
 var _matchPath2 = _interopRequireDefault(_matchPath);
 
@@ -1168,7 +1560,75 @@ Route.childContextTypes = {
 exports.default = Route;
 
 /***/ }),
-/* 29 */
+/* 34 */
+/*!*********************************************!*\
+  !*** ./node_modules/history/es/DOMUtils.js ***!
+  \*********************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var canUseDOM = exports.canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+var addEventListener = exports.addEventListener = function addEventListener(node, event, listener) {
+  return node.addEventListener ? node.addEventListener(event, listener, false) : node.attachEvent('on' + event, listener);
+};
+
+var removeEventListener = exports.removeEventListener = function removeEventListener(node, event, listener) {
+  return node.removeEventListener ? node.removeEventListener(event, listener, false) : node.detachEvent('on' + event, listener);
+};
+
+var getConfirmation = exports.getConfirmation = function getConfirmation(message, callback) {
+  return callback(window.confirm(message));
+}; // eslint-disable-line no-alert
+
+/**
+ * Returns true if the HTML5 history API is supported. Taken from Modernizr.
+ *
+ * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
+ * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
+ * changed to avoid false negatives for Windows Phones: https://github.com/reactjs/react-router/issues/586
+ */
+var supportsHistory = exports.supportsHistory = function supportsHistory() {
+  var ua = window.navigator.userAgent;
+
+  if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) return false;
+
+  return window.history && 'pushState' in window.history;
+};
+
+/**
+ * Returns true if browser fires popstate on hash change.
+ * IE10 and IE11 do not.
+ */
+var supportsPopStateOnHashChange = exports.supportsPopStateOnHashChange = function supportsPopStateOnHashChange() {
+  return window.navigator.userAgent.indexOf('Trident') === -1;
+};
+
+/**
+ * Returns false if using go(n) with hash history causes a full page reload.
+ */
+var supportsGoWithoutReloadUsingHash = exports.supportsGoWithoutReloadUsingHash = function supportsGoWithoutReloadUsingHash() {
+  return window.navigator.userAgent.indexOf('Firefox') === -1;
+};
+
+/**
+ * Returns true if a given popstate event is an extraneous WebKit event.
+ * Accounts for the fact that Chrome on iOS fires real popstate events
+ * containing undefined state when pressing the back button.
+ */
+var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
+  return event.state === undefined && navigator.userAgent.indexOf('CriOS') === -1;
+};
+
+/***/ }),
+/* 35 */
 /*!**********************!*\
   !*** ./app/index.js ***!
   \**********************/
@@ -1183,41 +1643,205 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(/*! react-dom */ 18);
+var _reactDom = __webpack_require__(/*! react-dom */ 15);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _App = __webpack_require__(/*! ./App */ 60);
+var _App = __webpack_require__(/*! ./App */ 46);
 
 var _App2 = _interopRequireDefault(_App);
-
-var _Nav = __webpack_require__(/*! ./Nav */ 67);
-
-var _Nav2 = _interopRequireDefault(_Nav);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app_shell'));
 
-_reactDom2.default.createPortal(_react2.default.createElement(_Nav2.default, null), document.getElementById('top-right-menu'));
-
 /***/ }),
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
 /* 36 */,
 /* 37 */,
 /* 38 */,
 /* 39 */,
 /* 40 */,
 /* 41 */,
-/* 42 */
-/*!******************************************************!*\
-  !*** ./node_modules/react-router/es/MemoryRouter.js ***!
-  \******************************************************/
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */
+/*!********************!*\
+  !*** ./app/App.js ***!
+  \********************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ 0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(/*! react-dom */ 15);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 47);
+
+var _Nav = __webpack_require__(/*! ./Nav */ 76);
+
+var _Nav2 = _interopRequireDefault(_Nav);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // REACT MODULES ==================================
+
+
+// Import components ==============================
+
+//=================================================
+
+
+var AppComponent = function (_React$Component) {
+    _inherits(AppComponent, _React$Component);
+
+    function AppComponent(props) {
+        _classCallCheck(this, AppComponent);
+
+        var _this = _possibleConstructorReturn(this, (AppComponent.__proto__ || Object.getPrototypeOf(AppComponent)).call(this, props));
+
+        _this.state = {};
+        return _this;
+    }
+
+    _createClass(AppComponent, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'container' },
+                _reactDom2.default.createPortal(_react2.default.createElement(_Nav2.default, null), document.getElementById('top-right-menu')),
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'HEELO APP WORLD'
+                )
+            );
+        }
+    }]);
+
+    return AppComponent;
+}(_react2.default.Component);
+
+var App = function App() {
+    return _react2.default.createElement(
+        _reactRouterDom.BrowserRouter,
+        null,
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: AppComponent })
+    );
+};
+
+exports.default = App;
+
+/***/ }),
+/* 47 */
+/*!***************************************************!*\
+  !*** ./node_modules/react-router-dom/es/index.js ***!
+  \***************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.withRouter = exports.matchPath = exports.Switch = exports.StaticRouter = exports.Router = exports.Route = exports.Redirect = exports.Prompt = exports.NavLink = exports.MemoryRouter = exports.Link = exports.HashRouter = exports.BrowserRouter = undefined;
+
+var _BrowserRouter2 = __webpack_require__(/*! ./BrowserRouter */ 48);
+
+var _BrowserRouter3 = _interopRequireDefault(_BrowserRouter2);
+
+var _HashRouter2 = __webpack_require__(/*! ./HashRouter */ 52);
+
+var _HashRouter3 = _interopRequireDefault(_HashRouter2);
+
+var _Link2 = __webpack_require__(/*! ./Link */ 31);
+
+var _Link3 = _interopRequireDefault(_Link2);
+
+var _MemoryRouter2 = __webpack_require__(/*! ./MemoryRouter */ 54);
+
+var _MemoryRouter3 = _interopRequireDefault(_MemoryRouter2);
+
+var _NavLink2 = __webpack_require__(/*! ./NavLink */ 57);
+
+var _NavLink3 = _interopRequireDefault(_NavLink2);
+
+var _Prompt2 = __webpack_require__(/*! ./Prompt */ 60);
+
+var _Prompt3 = _interopRequireDefault(_Prompt2);
+
+var _Redirect2 = __webpack_require__(/*! ./Redirect */ 62);
+
+var _Redirect3 = _interopRequireDefault(_Redirect2);
+
+var _Route2 = __webpack_require__(/*! ./Route */ 32);
+
+var _Route3 = _interopRequireDefault(_Route2);
+
+var _Router2 = __webpack_require__(/*! ./Router */ 18);
+
+var _Router3 = _interopRequireDefault(_Router2);
+
+var _StaticRouter2 = __webpack_require__(/*! ./StaticRouter */ 68);
+
+var _StaticRouter3 = _interopRequireDefault(_StaticRouter2);
+
+var _Switch2 = __webpack_require__(/*! ./Switch */ 70);
+
+var _Switch3 = _interopRequireDefault(_Switch2);
+
+var _matchPath2 = __webpack_require__(/*! ./matchPath */ 72);
+
+var _matchPath3 = _interopRequireDefault(_matchPath2);
+
+var _withRouter2 = __webpack_require__(/*! ./withRouter */ 73);
+
+var _withRouter3 = _interopRequireDefault(_withRouter2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.BrowserRouter = _BrowserRouter3.default;
+exports.HashRouter = _HashRouter3.default;
+exports.Link = _Link3.default;
+exports.MemoryRouter = _MemoryRouter3.default;
+exports.NavLink = _NavLink3.default;
+exports.Prompt = _Prompt3.default;
+exports.Redirect = _Redirect3.default;
+exports.Route = _Route3.default;
+exports.Router = _Router3.default;
+exports.StaticRouter = _StaticRouter3.default;
+exports.Switch = _Switch3.default;
+exports.matchPath = _matchPath3.default;
+exports.withRouter = _withRouter3.default;
+
+/***/ }),
+/* 48 */
+/*!***********************************************************!*\
+  !*** ./node_modules/react-router-dom/es/BrowserRouter.js ***!
+  \***********************************************************/
 /*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1231,7 +1855,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _warning = __webpack_require__(/*! warning */ 2);
+var _warning = __webpack_require__(/*! warning */ 1);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -1239,15 +1863,15 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(/*! prop-types */ 4);
+var _propTypes = __webpack_require__(/*! prop-types */ 3);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _createMemoryHistory = __webpack_require__(/*! history/createMemoryHistory */ 45);
+var _createBrowserHistory = __webpack_require__(/*! history/createBrowserHistory */ 51);
 
-var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
+var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
-var _Router = __webpack_require__(/*! ./Router */ 15);
+var _Router = __webpack_require__(/*! ./Router */ 18);
 
 var _Router2 = _interopRequireDefault(_Router);
 
@@ -1272,47 +1896,47 @@ function _inherits(subClass, superClass) {
 }
 
 /**
- * The public API for a <Router> that stores location in memory.
+ * The public API for a <Router> that uses HTML5 history.
  */
 
-var MemoryRouter = function (_React$Component) {
-  _inherits(MemoryRouter, _React$Component);
+var BrowserRouter = function (_React$Component) {
+  _inherits(BrowserRouter, _React$Component);
 
-  function MemoryRouter() {
+  function BrowserRouter() {
     var _temp, _this, _ret;
 
-    _classCallCheck(this, MemoryRouter);
+    _classCallCheck(this, BrowserRouter);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.history = (0, _createMemoryHistory2.default)(_this.props), _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.history = (0, _createBrowserHistory2.default)(_this.props), _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  MemoryRouter.prototype.componentWillMount = function componentWillMount() {
-    (0, _warning2.default)(!this.props.history, '<MemoryRouter> ignores the history prop. To use a custom history, ' + 'use `import { Router }` instead of `import { MemoryRouter as Router }`.');
+  BrowserRouter.prototype.componentWillMount = function componentWillMount() {
+    (0, _warning2.default)(!this.props.history, '<BrowserRouter> ignores the history prop. To use a custom history, ' + 'use `import { Router }` instead of `import { BrowserRouter as Router }`.');
   };
 
-  MemoryRouter.prototype.render = function render() {
+  BrowserRouter.prototype.render = function render() {
     return _react2.default.createElement(_Router2.default, { history: this.history, children: this.props.children });
   };
 
-  return MemoryRouter;
+  return BrowserRouter;
 }(_react2.default.Component);
 
-MemoryRouter.propTypes = {
-  initialEntries: _propTypes2.default.array,
-  initialIndex: _propTypes2.default.number,
+BrowserRouter.propTypes = {
+  basename: _propTypes2.default.string,
+  forceRefresh: _propTypes2.default.bool,
   getUserConfirmation: _propTypes2.default.func,
   keyLength: _propTypes2.default.number,
   children: _propTypes2.default.node
 };
 
-exports.default = MemoryRouter;
+exports.default = BrowserRouter;
 
 /***/ }),
-/* 43 */
+/* 49 */
 /*!************************************************************!*\
   !*** ./node_modules/prop-types/factoryWithTypeCheckers.js ***!
   \************************************************************/
@@ -1332,13 +1956,13 @@ exports.default = MemoryRouter;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 3);
+var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 5);
 var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
-var warning = __webpack_require__(/*! fbjs/lib/warning */ 10);
+var warning = __webpack_require__(/*! fbjs/lib/warning */ 11);
 var assign = __webpack_require__(/*! object-assign */ 6);
 
-var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ 13);
-var checkPropTypes = __webpack_require__(/*! ./checkPropTypes */ 12);
+var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ 14);
+var checkPropTypes = __webpack_require__(/*! ./checkPropTypes */ 13);
 
 module.exports = function (isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -1839,10 +2463,10 @@ module.exports = function (isValidElement, throwOnDirectAccess) {
 
   return ReactPropTypes;
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../process/browser.js */ 2)))
 
 /***/ }),
-/* 44 */
+/* 50 */
 /*!*************************************************************!*\
   !*** ./node_modules/prop-types/factoryWithThrowingShims.js ***!
   \*************************************************************/
@@ -1860,9 +2484,9 @@ module.exports = function (isValidElement, throwOnDirectAccess) {
 
 
 
-var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 3);
+var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 5);
 var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 7);
-var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ 13);
+var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ 14);
 
 module.exports = function () {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -1906,723 +2530,10 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 45 */
-/*!*****************************************************!*\
-  !*** ./node_modules/history/createMemoryHistory.js ***!
-  \*****************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-exports.__esModule = true;
-
-var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
-  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
-} : function (obj) {
-  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
-};
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }return target;
-};
-
-var _warning = __webpack_require__(/*! warning */ 2);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _PathUtils = __webpack_require__(/*! ./PathUtils */ 14);
-
-var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 46);
-
-var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 47);
-
-var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var clamp = function clamp(n, lowerBound, upperBound) {
-  return Math.min(Math.max(n, lowerBound), upperBound);
-};
-
-/**
- * Creates a history object that stores locations in memory.
- */
-var createMemoryHistory = function createMemoryHistory() {
-  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var getUserConfirmation = props.getUserConfirmation,
-      _props$initialEntries = props.initialEntries,
-      initialEntries = _props$initialEntries === undefined ? ['/'] : _props$initialEntries,
-      _props$initialIndex = props.initialIndex,
-      initialIndex = _props$initialIndex === undefined ? 0 : _props$initialIndex,
-      _props$keyLength = props.keyLength,
-      keyLength = _props$keyLength === undefined ? 6 : _props$keyLength;
-
-  var transitionManager = (0, _createTransitionManager2.default)();
-
-  var setState = function setState(nextState) {
-    _extends(history, nextState);
-
-    history.length = history.entries.length;
-
-    transitionManager.notifyListeners(history.location, history.action);
-  };
-
-  var createKey = function createKey() {
-    return Math.random().toString(36).substr(2, keyLength);
-  };
-
-  var index = clamp(initialIndex, 0, initialEntries.length - 1);
-  var entries = initialEntries.map(function (entry) {
-    return typeof entry === 'string' ? (0, _LocationUtils.createLocation)(entry, undefined, createKey()) : (0, _LocationUtils.createLocation)(entry, undefined, entry.key || createKey());
-  });
-
-  // Public interface
-
-  var createHref = _PathUtils.createPath;
-
-  var push = function push(path, state) {
-    (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
-
-    var action = 'PUSH';
-    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var prevIndex = history.index;
-      var nextIndex = prevIndex + 1;
-
-      var nextEntries = history.entries.slice(0);
-      if (nextEntries.length > nextIndex) {
-        nextEntries.splice(nextIndex, nextEntries.length - nextIndex, location);
-      } else {
-        nextEntries.push(location);
-      }
-
-      setState({
-        action: action,
-        location: location,
-        index: nextIndex,
-        entries: nextEntries
-      });
-    });
-  };
-
-  var replace = function replace(path, state) {
-    (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
-
-    var action = 'REPLACE';
-    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      history.entries[history.index] = location;
-
-      setState({ action: action, location: location });
-    });
-  };
-
-  var go = function go(n) {
-    var nextIndex = clamp(history.index + n, 0, history.entries.length - 1);
-
-    var action = 'POP';
-    var location = history.entries[nextIndex];
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (ok) {
-        setState({
-          action: action,
-          location: location,
-          index: nextIndex
-        });
-      } else {
-        // Mimic the behavior of DOM histories by
-        // causing a render after a cancelled POP.
-        setState();
-      }
-    });
-  };
-
-  var goBack = function goBack() {
-    return go(-1);
-  };
-
-  var goForward = function goForward() {
-    return go(1);
-  };
-
-  var canGo = function canGo(n) {
-    var nextIndex = history.index + n;
-    return nextIndex >= 0 && nextIndex < history.entries.length;
-  };
-
-  var block = function block() {
-    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-    return transitionManager.setPrompt(prompt);
-  };
-
-  var listen = function listen(listener) {
-    return transitionManager.appendListener(listener);
-  };
-
-  var history = {
-    length: entries.length,
-    action: 'POP',
-    location: entries[index],
-    index: index,
-    entries: entries,
-    createHref: createHref,
-    push: push,
-    replace: replace,
-    go: go,
-    goBack: goBack,
-    goForward: goForward,
-    canGo: canGo,
-    block: block,
-    listen: listen
-  };
-
-  return history;
-};
-
-exports.default = createMemoryHistory;
-
-/***/ }),
-/* 46 */
-/*!***********************************************!*\
-  !*** ./node_modules/history/LocationUtils.js ***!
-  \***********************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-exports.locationsAreEqual = exports.createLocation = undefined;
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }return target;
-};
-
-var _resolvePathname = __webpack_require__(/*! resolve-pathname */ 25);
-
-var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
-
-var _valueEqual = __webpack_require__(/*! value-equal */ 26);
-
-var _valueEqual2 = _interopRequireDefault(_valueEqual);
-
-var _PathUtils = __webpack_require__(/*! ./PathUtils */ 14);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var createLocation = exports.createLocation = function createLocation(path, state, key, currentLocation) {
-  var location = void 0;
-  if (typeof path === 'string') {
-    // Two-arg form: push(path, state)
-    location = (0, _PathUtils.parsePath)(path);
-    location.state = state;
-  } else {
-    // One-arg form: push(location)
-    location = _extends({}, path);
-
-    if (location.pathname === undefined) location.pathname = '';
-
-    if (location.search) {
-      if (location.search.charAt(0) !== '?') location.search = '?' + location.search;
-    } else {
-      location.search = '';
-    }
-
-    if (location.hash) {
-      if (location.hash.charAt(0) !== '#') location.hash = '#' + location.hash;
-    } else {
-      location.hash = '';
-    }
-
-    if (state !== undefined && location.state === undefined) location.state = state;
-  }
-
-  try {
-    location.pathname = decodeURI(location.pathname);
-  } catch (e) {
-    if (e instanceof URIError) {
-      throw new URIError('Pathname "' + location.pathname + '" could not be decoded. ' + 'This is likely caused by an invalid percent-encoding.');
-    } else {
-      throw e;
-    }
-  }
-
-  if (key) location.key = key;
-
-  if (currentLocation) {
-    // Resolve incomplete/relative pathname relative to current location.
-    if (!location.pathname) {
-      location.pathname = currentLocation.pathname;
-    } else if (location.pathname.charAt(0) !== '/') {
-      location.pathname = (0, _resolvePathname2.default)(location.pathname, currentLocation.pathname);
-    }
-  } else {
-    // When there is no prior location and pathname is empty, set it to /
-    if (!location.pathname) {
-      location.pathname = '/';
-    }
-  }
-
-  return location;
-};
-
-var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a, b) {
-  return a.pathname === b.pathname && a.search === b.search && a.hash === b.hash && a.key === b.key && (0, _valueEqual2.default)(a.state, b.state);
-};
-
-/***/ }),
-/* 47 */
-/*!*********************************************************!*\
-  !*** ./node_modules/history/createTransitionManager.js ***!
-  \*********************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _warning = __webpack_require__(/*! warning */ 2);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var createTransitionManager = function createTransitionManager() {
-  var prompt = null;
-
-  var setPrompt = function setPrompt(nextPrompt) {
-    (0, _warning2.default)(prompt == null, 'A history supports only one prompt at a time');
-
-    prompt = nextPrompt;
-
-    return function () {
-      if (prompt === nextPrompt) prompt = null;
-    };
-  };
-
-  var confirmTransitionTo = function confirmTransitionTo(location, action, getUserConfirmation, callback) {
-    // TODO: If another transition starts while we're still confirming
-    // the previous one, we may end up in a weird state. Figure out the
-    // best way to handle this.
-    if (prompt != null) {
-      var result = typeof prompt === 'function' ? prompt(location, action) : prompt;
-
-      if (typeof result === 'string') {
-        if (typeof getUserConfirmation === 'function') {
-          getUserConfirmation(result, callback);
-        } else {
-          (0, _warning2.default)(false, 'A history needs a getUserConfirmation function in order to use a prompt message');
-
-          callback(true);
-        }
-      } else {
-        // Return false from a transition hook to cancel the transition.
-        callback(result !== false);
-      }
-    } else {
-      callback(true);
-    }
-  };
-
-  var listeners = [];
-
-  var appendListener = function appendListener(fn) {
-    var isActive = true;
-
-    var listener = function listener() {
-      if (isActive) fn.apply(undefined, arguments);
-    };
-
-    listeners.push(listener);
-
-    return function () {
-      isActive = false;
-      listeners = listeners.filter(function (item) {
-        return item !== listener;
-      });
-    };
-  };
-
-  var notifyListeners = function notifyListeners() {
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    listeners.forEach(function (listener) {
-      return listener.apply(undefined, args);
-    });
-  };
-
-  return {
-    setPrompt: setPrompt,
-    confirmTransitionTo: confirmTransitionTo,
-    appendListener: appendListener,
-    notifyListeners: notifyListeners
-  };
-};
-
-exports.default = createTransitionManager;
-
-/***/ }),
-/* 48 */
-/*!************************************************!*\
-  !*** ./node_modules/react-router/es/Prompt.js ***!
-  \************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _react = __webpack_require__(/*! react */ 0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(/*! prop-types */ 4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _invariant = __webpack_require__(/*! invariant */ 5);
-
-var _invariant2 = _interopRequireDefault(_invariant);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-/**
- * The public API for prompting the user before navigating away
- * from a screen with a component.
- */
-
-var Prompt = function (_React$Component) {
-  _inherits(Prompt, _React$Component);
-
-  function Prompt() {
-    _classCallCheck(this, Prompt);
-
-    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
-  }
-
-  Prompt.prototype.enable = function enable(message) {
-    if (this.unblock) this.unblock();
-
-    this.unblock = this.context.router.history.block(message);
-  };
-
-  Prompt.prototype.disable = function disable() {
-    if (this.unblock) {
-      this.unblock();
-      this.unblock = null;
-    }
-  };
-
-  Prompt.prototype.componentWillMount = function componentWillMount() {
-    (0, _invariant2.default)(this.context.router, 'You should not use <Prompt> outside a <Router>');
-
-    if (this.props.when) this.enable(this.props.message);
-  };
-
-  Prompt.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-    if (nextProps.when) {
-      if (!this.props.when || this.props.message !== nextProps.message) this.enable(nextProps.message);
-    } else {
-      this.disable();
-    }
-  };
-
-  Prompt.prototype.componentWillUnmount = function componentWillUnmount() {
-    this.disable();
-  };
-
-  Prompt.prototype.render = function render() {
-    return null;
-  };
-
-  return Prompt;
-}(_react2.default.Component);
-
-Prompt.propTypes = {
-  when: _propTypes2.default.bool,
-  message: _propTypes2.default.oneOfType([_propTypes2.default.func, _propTypes2.default.string]).isRequired
-};
-Prompt.defaultProps = {
-  when: true
-};
-Prompt.contextTypes = {
-  router: _propTypes2.default.shape({
-    history: _propTypes2.default.shape({
-      block: _propTypes2.default.func.isRequired
-    }).isRequired
-  }).isRequired
-};
-
-exports.default = Prompt;
-
-/***/ }),
-/* 49 */
-/*!**************************************************!*\
-  !*** ./node_modules/react-router/es/Redirect.js ***!
-  \**************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _react = __webpack_require__(/*! react */ 0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(/*! prop-types */ 4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _warning = __webpack_require__(/*! warning */ 2);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _invariant = __webpack_require__(/*! invariant */ 5);
-
-var _invariant2 = _interopRequireDefault(_invariant);
-
-var _history = __webpack_require__(/*! history */ 50);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-/**
- * The public API for updating the location programmatically
- * with a component.
- */
-
-var Redirect = function (_React$Component) {
-  _inherits(Redirect, _React$Component);
-
-  function Redirect() {
-    _classCallCheck(this, Redirect);
-
-    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
-  }
-
-  Redirect.prototype.isStatic = function isStatic() {
-    return this.context.router && this.context.router.staticContext;
-  };
-
-  Redirect.prototype.componentWillMount = function componentWillMount() {
-    (0, _invariant2.default)(this.context.router, 'You should not use <Redirect> outside a <Router>');
-
-    if (this.isStatic()) this.perform();
-  };
-
-  Redirect.prototype.componentDidMount = function componentDidMount() {
-    if (!this.isStatic()) this.perform();
-  };
-
-  Redirect.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
-    var prevTo = (0, _history.createLocation)(prevProps.to);
-    var nextTo = (0, _history.createLocation)(this.props.to);
-
-    if ((0, _history.locationsAreEqual)(prevTo, nextTo)) {
-      (0, _warning2.default)(false, 'You tried to redirect to the same route you\'re currently on: ' + ('"' + nextTo.pathname + nextTo.search + '"'));
-      return;
-    }
-
-    this.perform();
-  };
-
-  Redirect.prototype.perform = function perform() {
-    var history = this.context.router.history;
-    var _props = this.props,
-        push = _props.push,
-        to = _props.to;
-
-    if (push) {
-      history.push(to);
-    } else {
-      history.replace(to);
-    }
-  };
-
-  Redirect.prototype.render = function render() {
-    return null;
-  };
-
-  return Redirect;
-}(_react2.default.Component);
-
-Redirect.propTypes = {
-  push: _propTypes2.default.bool,
-  from: _propTypes2.default.string,
-  to: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]).isRequired
-};
-Redirect.defaultProps = {
-  push: false
-};
-Redirect.contextTypes = {
-  router: _propTypes2.default.shape({
-    history: _propTypes2.default.shape({
-      push: _propTypes2.default.func.isRequired,
-      replace: _propTypes2.default.func.isRequired
-    }).isRequired,
-    staticContext: _propTypes2.default.object
-  }).isRequired
-};
-
-exports.default = Redirect;
-
-/***/ }),
-/* 50 */
-/*!******************************************!*\
-  !*** ./node_modules/history/es/index.js ***!
-  \******************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.createPath = exports.parsePath = exports.locationsAreEqual = exports.createLocation = exports.createMemoryHistory = exports.createHashHistory = exports.createBrowserHistory = undefined;
-
-var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 11);
-
-Object.defineProperty(exports, 'createLocation', {
-  enumerable: true,
-  get: function get() {
-    return _LocationUtils.createLocation;
-  }
-});
-Object.defineProperty(exports, 'locationsAreEqual', {
-  enumerable: true,
-  get: function get() {
-    return _LocationUtils.locationsAreEqual;
-  }
-});
-
-var _PathUtils = __webpack_require__(/*! ./PathUtils */ 8);
-
-Object.defineProperty(exports, 'parsePath', {
-  enumerable: true,
-  get: function get() {
-    return _PathUtils.parsePath;
-  }
-});
-Object.defineProperty(exports, 'createPath', {
-  enumerable: true,
-  get: function get() {
-    return _PathUtils.createPath;
-  }
-});
-
-var _createBrowserHistory2 = __webpack_require__(/*! ./createBrowserHistory */ 51);
-
-var _createBrowserHistory3 = _interopRequireDefault(_createBrowserHistory2);
-
-var _createHashHistory2 = __webpack_require__(/*! ./createHashHistory */ 52);
-
-var _createHashHistory3 = _interopRequireDefault(_createHashHistory2);
-
-var _createMemoryHistory2 = __webpack_require__(/*! ./createMemoryHistory */ 53);
-
-var _createMemoryHistory3 = _interopRequireDefault(_createMemoryHistory2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.createBrowserHistory = _createBrowserHistory3.default;
-exports.createHashHistory = _createHashHistory3.default;
-exports.createMemoryHistory = _createMemoryHistory3.default;
-
-/***/ }),
 /* 51 */
-/*!*********************************************************!*\
-  !*** ./node_modules/history/es/createBrowserHistory.js ***!
-  \*********************************************************/
+/*!******************************************************!*\
+  !*** ./node_modules/history/createBrowserHistory.js ***!
+  \******************************************************/
 /*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
@@ -2630,31 +2541,9 @@ exports.createMemoryHistory = _createMemoryHistory3.default;
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _warning = __webpack_require__(/*! warning */ 2);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _invariant = __webpack_require__(/*! invariant */ 5);
-
-var _invariant2 = _interopRequireDefault(_invariant);
-
-var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 11);
-
-var _PathUtils = __webpack_require__(/*! ./PathUtils */ 8);
-
-var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 16);
-
-var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
-
-var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 27);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+exports.__esModule = true;
 
 var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
   return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
@@ -2671,6 +2560,28 @@ var _extends = Object.assign || function (target) {
     }
   }return target;
 };
+
+var _warning = __webpack_require__(/*! warning */ 1);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _invariant = __webpack_require__(/*! invariant */ 4);
+
+var _invariant2 = _interopRequireDefault(_invariant);
+
+var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 16);
+
+var _PathUtils = __webpack_require__(/*! ./PathUtils */ 8);
+
+var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 17);
+
+var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
+
+var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 30);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
 var PopStateEvent = 'popstate';
 var HashChangeEvent = 'hashchange';
@@ -2951,9 +2862,9 @@ exports.default = createBrowserHistory;
 
 /***/ }),
 /* 52 */
-/*!******************************************************!*\
-  !*** ./node_modules/history/es/createHashHistory.js ***!
-  \******************************************************/
+/*!********************************************************!*\
+  !*** ./node_modules/react-router-dom/es/HashRouter.js ***!
+  \********************************************************/
 /*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
@@ -2965,25 +2876,100 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _warning = __webpack_require__(/*! warning */ 2);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _warning = __webpack_require__(/*! warning */ 1);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(/*! invariant */ 5);
+var _react = __webpack_require__(/*! react */ 0);
 
-var _invariant2 = _interopRequireDefault(_invariant);
+var _react2 = _interopRequireDefault(_react);
 
-var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 11);
+var _propTypes = __webpack_require__(/*! prop-types */ 3);
 
-var _PathUtils = __webpack_require__(/*! ./PathUtils */ 8);
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 16);
+var _createHashHistory = __webpack_require__(/*! history/createHashHistory */ 53);
 
-var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
+var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 27);
+var _Router = __webpack_require__(/*! ./Router */ 18);
+
+var _Router2 = _interopRequireDefault(_Router);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+/**
+ * The public API for a <Router> that uses window.location.hash.
+ */
+
+var HashRouter = function (_React$Component) {
+  _inherits(HashRouter, _React$Component);
+
+  function HashRouter() {
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, HashRouter);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.history = (0, _createHashHistory2.default)(_this.props), _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  HashRouter.prototype.componentWillMount = function componentWillMount() {
+    (0, _warning2.default)(!this.props.history, '<HashRouter> ignores the history prop. To use a custom history, ' + 'use `import { Router }` instead of `import { HashRouter as Router }`.');
+  };
+
+  HashRouter.prototype.render = function render() {
+    return _react2.default.createElement(_Router2.default, { history: this.history, children: this.props.children });
+  };
+
+  return HashRouter;
+}(_react2.default.Component);
+
+HashRouter.propTypes = {
+  basename: _propTypes2.default.string,
+  getUserConfirmation: _propTypes2.default.func,
+  hashType: _propTypes2.default.oneOf(['hashbang', 'noslash', 'slash']),
+  children: _propTypes2.default.node
+};
+
+exports.default = HashRouter;
+
+/***/ }),
+/* 53 */
+/*!***************************************************!*\
+  !*** ./node_modules/history/createHashHistory.js ***!
+  \***************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
 
 var _extends = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
@@ -2994,6 +2980,28 @@ var _extends = Object.assign || function (target) {
     }
   }return target;
 };
+
+var _warning = __webpack_require__(/*! warning */ 1);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _invariant = __webpack_require__(/*! invariant */ 4);
+
+var _invariant2 = _interopRequireDefault(_invariant);
+
+var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 16);
+
+var _PathUtils = __webpack_require__(/*! ./PathUtils */ 8);
+
+var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 17);
+
+var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
+
+var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 30);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
 var HashChangeEvent = 'hashchange';
 
@@ -3294,10 +3302,10 @@ var createHashHistory = function createHashHistory() {
 exports.default = createHashHistory;
 
 /***/ }),
-/* 53 */
-/*!********************************************************!*\
-  !*** ./node_modules/history/es/createMemoryHistory.js ***!
-  \********************************************************/
+/* 54 */
+/*!**********************************************************!*\
+  !*** ./node_modules/react-router-dom/es/MemoryRouter.js ***!
+  \**********************************************************/
 /*! dynamic exports provided */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
@@ -3309,21 +3317,127 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _MemoryRouter = __webpack_require__(/*! react-router/es/MemoryRouter */ 55);
 
-var _warning = __webpack_require__(/*! warning */ 2);
+var _MemoryRouter2 = _interopRequireDefault(_MemoryRouter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _MemoryRouter2.default; // Written in this round about way for babel-transform-imports
+
+/***/ }),
+/* 55 */
+/*!******************************************************!*\
+  !*** ./node_modules/react-router/es/MemoryRouter.js ***!
+  \******************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _warning = __webpack_require__(/*! warning */ 1);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _PathUtils = __webpack_require__(/*! ./PathUtils */ 8);
+var _react = __webpack_require__(/*! react */ 0);
 
-var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 11);
+var _react2 = _interopRequireDefault(_react);
 
-var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 16);
+var _propTypes = __webpack_require__(/*! prop-types */ 3);
 
-var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _createMemoryHistory = __webpack_require__(/*! history/createMemoryHistory */ 56);
+
+var _createMemoryHistory2 = _interopRequireDefault(_createMemoryHistory);
+
+var _Router = __webpack_require__(/*! ./Router */ 19);
+
+var _Router2 = _interopRequireDefault(_Router);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+/**
+ * The public API for a <Router> that stores location in memory.
+ */
+
+var MemoryRouter = function (_React$Component) {
+  _inherits(MemoryRouter, _React$Component);
+
+  function MemoryRouter() {
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, MemoryRouter);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.history = (0, _createMemoryHistory2.default)(_this.props), _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  MemoryRouter.prototype.componentWillMount = function componentWillMount() {
+    (0, _warning2.default)(!this.props.history, '<MemoryRouter> ignores the history prop. To use a custom history, ' + 'use `import { Router }` instead of `import { MemoryRouter as Router }`.');
+  };
+
+  MemoryRouter.prototype.render = function render() {
+    return _react2.default.createElement(_Router2.default, { history: this.history, children: this.props.children });
+  };
+
+  return MemoryRouter;
+}(_react2.default.Component);
+
+MemoryRouter.propTypes = {
+  initialEntries: _propTypes2.default.array,
+  initialIndex: _propTypes2.default.number,
+  getUserConfirmation: _propTypes2.default.func,
+  keyLength: _propTypes2.default.number,
+  children: _propTypes2.default.node
+};
+
+exports.default = MemoryRouter;
+
+/***/ }),
+/* 56 */
+/*!*****************************************************!*\
+  !*** ./node_modules/history/createMemoryHistory.js ***!
+  \*****************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.__esModule = true;
 
 var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
   return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
@@ -3340,6 +3454,22 @@ var _extends = Object.assign || function (target) {
     }
   }return target;
 };
+
+var _warning = __webpack_require__(/*! warning */ 1);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _PathUtils = __webpack_require__(/*! ./PathUtils */ 8);
+
+var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 16);
+
+var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 17);
+
+var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
 var clamp = function clamp(n, lowerBound, upperBound) {
   return Math.min(Math.max(n, lowerBound), upperBound);
@@ -3490,7 +3620,124 @@ var createMemoryHistory = function createMemoryHistory() {
 exports.default = createMemoryHistory;
 
 /***/ }),
-/* 54 */
+/* 57 */
+/*!*****************************************************!*\
+  !*** ./node_modules/react-router-dom/es/NavLink.js ***!
+  \*****************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _react = __webpack_require__(/*! react */ 0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ 3);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Route = __webpack_require__(/*! ./Route */ 32);
+
+var _Route2 = _interopRequireDefault(_Route);
+
+var _Link = __webpack_require__(/*! ./Link */ 31);
+
+var _Link2 = _interopRequireDefault(_Link);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+};
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
+/**
+ * A <Link> wrapper that knows if it's "active" or not.
+ */
+var NavLink = function NavLink(_ref) {
+  var to = _ref.to,
+      exact = _ref.exact,
+      strict = _ref.strict,
+      location = _ref.location,
+      activeClassName = _ref.activeClassName,
+      className = _ref.className,
+      activeStyle = _ref.activeStyle,
+      style = _ref.style,
+      getIsActive = _ref.isActive,
+      ariaCurrent = _ref.ariaCurrent,
+      rest = _objectWithoutProperties(_ref, ['to', 'exact', 'strict', 'location', 'activeClassName', 'className', 'activeStyle', 'style', 'isActive', 'ariaCurrent']);
+
+  return _react2.default.createElement(_Route2.default, {
+    path: (typeof to === 'undefined' ? 'undefined' : _typeof(to)) === 'object' ? to.pathname : to,
+    exact: exact,
+    strict: strict,
+    location: location,
+    children: function children(_ref2) {
+      var location = _ref2.location,
+          match = _ref2.match;
+
+      var isActive = !!(getIsActive ? getIsActive(match, location) : match);
+
+      return _react2.default.createElement(_Link2.default, _extends({
+        to: to,
+        className: isActive ? [className, activeClassName].filter(function (i) {
+          return i;
+        }).join(' ') : className,
+        style: isActive ? _extends({}, style, activeStyle) : style,
+        'aria-current': isActive && ariaCurrent
+      }, rest));
+    }
+  });
+};
+
+NavLink.propTypes = {
+  to: _Link2.default.propTypes.to,
+  exact: _propTypes2.default.bool,
+  strict: _propTypes2.default.bool,
+  location: _propTypes2.default.object,
+  activeClassName: _propTypes2.default.string,
+  className: _propTypes2.default.string,
+  activeStyle: _propTypes2.default.object,
+  style: _propTypes2.default.object,
+  isActive: _propTypes2.default.func,
+  ariaCurrent: _propTypes2.default.oneOf(['page', 'step', 'location', 'true'])
+};
+
+NavLink.defaultProps = {
+  activeClassName: 'active',
+  ariaCurrent: 'true'
+};
+
+exports.default = NavLink;
+
+/***/ }),
+/* 58 */
 /*!**********************************************!*\
   !*** ./node_modules/path-to-regexp/index.js ***!
   \**********************************************/
@@ -3503,7 +3750,7 @@ exports.default = createMemoryHistory;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var isarray = __webpack_require__(/*! isarray */ 55);
+var isarray = __webpack_require__(/*! isarray */ 59);
 
 /**
  * Expose `pathToRegexp`.
@@ -3930,7 +4177,7 @@ function pathToRegexp(path, keys, options) {
 }
 
 /***/ }),
-/* 55 */
+/* 59 */
 /*!***************************************!*\
   !*** ./node_modules/isarray/index.js ***!
   \***************************************/
@@ -3946,7 +4193,1270 @@ module.exports = Array.isArray || function (arr) {
 };
 
 /***/ }),
-/* 56 */
+/* 60 */
+/*!****************************************************!*\
+  !*** ./node_modules/react-router-dom/es/Prompt.js ***!
+  \****************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Prompt = __webpack_require__(/*! react-router/es/Prompt */ 61);
+
+var _Prompt2 = _interopRequireDefault(_Prompt);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Prompt2.default; // Written in this round about way for babel-transform-imports
+
+/***/ }),
+/* 61 */
+/*!************************************************!*\
+  !*** ./node_modules/react-router/es/Prompt.js ***!
+  \************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _react = __webpack_require__(/*! react */ 0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ 3);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _invariant = __webpack_require__(/*! invariant */ 4);
+
+var _invariant2 = _interopRequireDefault(_invariant);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+/**
+ * The public API for prompting the user before navigating away
+ * from a screen with a component.
+ */
+
+var Prompt = function (_React$Component) {
+  _inherits(Prompt, _React$Component);
+
+  function Prompt() {
+    _classCallCheck(this, Prompt);
+
+    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+  }
+
+  Prompt.prototype.enable = function enable(message) {
+    if (this.unblock) this.unblock();
+
+    this.unblock = this.context.router.history.block(message);
+  };
+
+  Prompt.prototype.disable = function disable() {
+    if (this.unblock) {
+      this.unblock();
+      this.unblock = null;
+    }
+  };
+
+  Prompt.prototype.componentWillMount = function componentWillMount() {
+    (0, _invariant2.default)(this.context.router, 'You should not use <Prompt> outside a <Router>');
+
+    if (this.props.when) this.enable(this.props.message);
+  };
+
+  Prompt.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+    if (nextProps.when) {
+      if (!this.props.when || this.props.message !== nextProps.message) this.enable(nextProps.message);
+    } else {
+      this.disable();
+    }
+  };
+
+  Prompt.prototype.componentWillUnmount = function componentWillUnmount() {
+    this.disable();
+  };
+
+  Prompt.prototype.render = function render() {
+    return null;
+  };
+
+  return Prompt;
+}(_react2.default.Component);
+
+Prompt.propTypes = {
+  when: _propTypes2.default.bool,
+  message: _propTypes2.default.oneOfType([_propTypes2.default.func, _propTypes2.default.string]).isRequired
+};
+Prompt.defaultProps = {
+  when: true
+};
+Prompt.contextTypes = {
+  router: _propTypes2.default.shape({
+    history: _propTypes2.default.shape({
+      block: _propTypes2.default.func.isRequired
+    }).isRequired
+  }).isRequired
+};
+
+exports.default = Prompt;
+
+/***/ }),
+/* 62 */
+/*!******************************************************!*\
+  !*** ./node_modules/react-router-dom/es/Redirect.js ***!
+  \******************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Redirect = __webpack_require__(/*! react-router/es/Redirect */ 63);
+
+var _Redirect2 = _interopRequireDefault(_Redirect);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Redirect2.default; // Written in this round about way for babel-transform-imports
+
+/***/ }),
+/* 63 */
+/*!**************************************************!*\
+  !*** ./node_modules/react-router/es/Redirect.js ***!
+  \**************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _react = __webpack_require__(/*! react */ 0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ 3);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _warning = __webpack_require__(/*! warning */ 1);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _invariant = __webpack_require__(/*! invariant */ 4);
+
+var _invariant2 = _interopRequireDefault(_invariant);
+
+var _history = __webpack_require__(/*! history */ 64);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+/**
+ * The public API for updating the location programmatically
+ * with a component.
+ */
+
+var Redirect = function (_React$Component) {
+  _inherits(Redirect, _React$Component);
+
+  function Redirect() {
+    _classCallCheck(this, Redirect);
+
+    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+  }
+
+  Redirect.prototype.isStatic = function isStatic() {
+    return this.context.router && this.context.router.staticContext;
+  };
+
+  Redirect.prototype.componentWillMount = function componentWillMount() {
+    (0, _invariant2.default)(this.context.router, 'You should not use <Redirect> outside a <Router>');
+
+    if (this.isStatic()) this.perform();
+  };
+
+  Redirect.prototype.componentDidMount = function componentDidMount() {
+    if (!this.isStatic()) this.perform();
+  };
+
+  Redirect.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
+    var prevTo = (0, _history.createLocation)(prevProps.to);
+    var nextTo = (0, _history.createLocation)(this.props.to);
+
+    if ((0, _history.locationsAreEqual)(prevTo, nextTo)) {
+      (0, _warning2.default)(false, 'You tried to redirect to the same route you\'re currently on: ' + ('"' + nextTo.pathname + nextTo.search + '"'));
+      return;
+    }
+
+    this.perform();
+  };
+
+  Redirect.prototype.perform = function perform() {
+    var history = this.context.router.history;
+    var _props = this.props,
+        push = _props.push,
+        to = _props.to;
+
+    if (push) {
+      history.push(to);
+    } else {
+      history.replace(to);
+    }
+  };
+
+  Redirect.prototype.render = function render() {
+    return null;
+  };
+
+  return Redirect;
+}(_react2.default.Component);
+
+Redirect.propTypes = {
+  push: _propTypes2.default.bool,
+  from: _propTypes2.default.string,
+  to: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]).isRequired
+};
+Redirect.defaultProps = {
+  push: false
+};
+Redirect.contextTypes = {
+  router: _propTypes2.default.shape({
+    history: _propTypes2.default.shape({
+      push: _propTypes2.default.func.isRequired,
+      replace: _propTypes2.default.func.isRequired
+    }).isRequired,
+    staticContext: _propTypes2.default.object
+  }).isRequired
+};
+
+exports.default = Redirect;
+
+/***/ }),
+/* 64 */
+/*!******************************************!*\
+  !*** ./node_modules/history/es/index.js ***!
+  \******************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createPath = exports.parsePath = exports.locationsAreEqual = exports.createLocation = exports.createMemoryHistory = exports.createHashHistory = exports.createBrowserHistory = undefined;
+
+var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 12);
+
+Object.defineProperty(exports, 'createLocation', {
+  enumerable: true,
+  get: function get() {
+    return _LocationUtils.createLocation;
+  }
+});
+Object.defineProperty(exports, 'locationsAreEqual', {
+  enumerable: true,
+  get: function get() {
+    return _LocationUtils.locationsAreEqual;
+  }
+});
+
+var _PathUtils = __webpack_require__(/*! ./PathUtils */ 9);
+
+Object.defineProperty(exports, 'parsePath', {
+  enumerable: true,
+  get: function get() {
+    return _PathUtils.parsePath;
+  }
+});
+Object.defineProperty(exports, 'createPath', {
+  enumerable: true,
+  get: function get() {
+    return _PathUtils.createPath;
+  }
+});
+
+var _createBrowserHistory2 = __webpack_require__(/*! ./createBrowserHistory */ 65);
+
+var _createBrowserHistory3 = _interopRequireDefault(_createBrowserHistory2);
+
+var _createHashHistory2 = __webpack_require__(/*! ./createHashHistory */ 66);
+
+var _createHashHistory3 = _interopRequireDefault(_createHashHistory2);
+
+var _createMemoryHistory2 = __webpack_require__(/*! ./createMemoryHistory */ 67);
+
+var _createMemoryHistory3 = _interopRequireDefault(_createMemoryHistory2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.createBrowserHistory = _createBrowserHistory3.default;
+exports.createHashHistory = _createHashHistory3.default;
+exports.createMemoryHistory = _createMemoryHistory3.default;
+
+/***/ }),
+/* 65 */
+/*!*********************************************************!*\
+  !*** ./node_modules/history/es/createBrowserHistory.js ***!
+  \*********************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _warning = __webpack_require__(/*! warning */ 1);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _invariant = __webpack_require__(/*! invariant */ 4);
+
+var _invariant2 = _interopRequireDefault(_invariant);
+
+var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 12);
+
+var _PathUtils = __webpack_require__(/*! ./PathUtils */ 9);
+
+var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 21);
+
+var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
+
+var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 34);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+};
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var PopStateEvent = 'popstate';
+var HashChangeEvent = 'hashchange';
+
+var getHistoryState = function getHistoryState() {
+  try {
+    return window.history.state || {};
+  } catch (e) {
+    // IE 11 sometimes throws when accessing window.history.state
+    // See https://github.com/ReactTraining/history/pull/289
+    return {};
+  }
+};
+
+/**
+ * Creates a history object that uses the HTML5 history API including
+ * pushState, replaceState, and the popstate event.
+ */
+var createBrowserHistory = function createBrowserHistory() {
+  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  (0, _invariant2.default)(_DOMUtils.canUseDOM, 'Browser history needs a DOM');
+
+  var globalHistory = window.history;
+  var canUseHistory = (0, _DOMUtils.supportsHistory)();
+  var needsHashChangeListener = !(0, _DOMUtils.supportsPopStateOnHashChange)();
+
+  var _props$forceRefresh = props.forceRefresh,
+      forceRefresh = _props$forceRefresh === undefined ? false : _props$forceRefresh,
+      _props$getUserConfirm = props.getUserConfirmation,
+      getUserConfirmation = _props$getUserConfirm === undefined ? _DOMUtils.getConfirmation : _props$getUserConfirm,
+      _props$keyLength = props.keyLength,
+      keyLength = _props$keyLength === undefined ? 6 : _props$keyLength;
+
+  var basename = props.basename ? (0, _PathUtils.stripTrailingSlash)((0, _PathUtils.addLeadingSlash)(props.basename)) : '';
+
+  var getDOMLocation = function getDOMLocation(historyState) {
+    var _ref = historyState || {},
+        key = _ref.key,
+        state = _ref.state;
+
+    var _window$location = window.location,
+        pathname = _window$location.pathname,
+        search = _window$location.search,
+        hash = _window$location.hash;
+
+    var path = pathname + search + hash;
+
+    (0, _warning2.default)(!basename || (0, _PathUtils.hasBasename)(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path "' + path + '" to begin with "' + basename + '".');
+
+    if (basename) path = (0, _PathUtils.stripBasename)(path, basename);
+
+    return (0, _LocationUtils.createLocation)(path, state, key);
+  };
+
+  var createKey = function createKey() {
+    return Math.random().toString(36).substr(2, keyLength);
+  };
+
+  var transitionManager = (0, _createTransitionManager2.default)();
+
+  var setState = function setState(nextState) {
+    _extends(history, nextState);
+
+    history.length = globalHistory.length;
+
+    transitionManager.notifyListeners(history.location, history.action);
+  };
+
+  var handlePopState = function handlePopState(event) {
+    // Ignore extraneous popstate events in WebKit.
+    if ((0, _DOMUtils.isExtraneousPopstateEvent)(event)) return;
+
+    handlePop(getDOMLocation(event.state));
+  };
+
+  var handleHashChange = function handleHashChange() {
+    handlePop(getDOMLocation(getHistoryState()));
+  };
+
+  var forceNextPop = false;
+
+  var handlePop = function handlePop(location) {
+    if (forceNextPop) {
+      forceNextPop = false;
+      setState();
+    } else {
+      var action = 'POP';
+
+      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+        if (ok) {
+          setState({ action: action, location: location });
+        } else {
+          revertPop(location);
+        }
+      });
+    }
+  };
+
+  var revertPop = function revertPop(fromLocation) {
+    var toLocation = history.location;
+
+    // TODO: We could probably make this more reliable by
+    // keeping a list of keys we've seen in sessionStorage.
+    // Instead, we just default to 0 for keys we don't know.
+
+    var toIndex = allKeys.indexOf(toLocation.key);
+
+    if (toIndex === -1) toIndex = 0;
+
+    var fromIndex = allKeys.indexOf(fromLocation.key);
+
+    if (fromIndex === -1) fromIndex = 0;
+
+    var delta = toIndex - fromIndex;
+
+    if (delta) {
+      forceNextPop = true;
+      go(delta);
+    }
+  };
+
+  var initialLocation = getDOMLocation(getHistoryState());
+  var allKeys = [initialLocation.key];
+
+  // Public interface
+
+  var createHref = function createHref(location) {
+    return basename + (0, _PathUtils.createPath)(location);
+  };
+
+  var push = function push(path, state) {
+    (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
+
+    var action = 'PUSH';
+    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
+
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+
+      var href = createHref(location);
+      var key = location.key,
+          state = location.state;
+
+      if (canUseHistory) {
+        globalHistory.pushState({ key: key, state: state }, null, href);
+
+        if (forceRefresh) {
+          window.location.href = href;
+        } else {
+          var prevIndex = allKeys.indexOf(history.location.key);
+          var nextKeys = allKeys.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);
+
+          nextKeys.push(location.key);
+          allKeys = nextKeys;
+
+          setState({ action: action, location: location });
+        }
+      } else {
+        (0, _warning2.default)(state === undefined, 'Browser history cannot push state in browsers that do not support HTML5 history');
+
+        window.location.href = href;
+      }
+    });
+  };
+
+  var replace = function replace(path, state) {
+    (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
+
+    var action = 'REPLACE';
+    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
+
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+
+      var href = createHref(location);
+      var key = location.key,
+          state = location.state;
+
+      if (canUseHistory) {
+        globalHistory.replaceState({ key: key, state: state }, null, href);
+
+        if (forceRefresh) {
+          window.location.replace(href);
+        } else {
+          var prevIndex = allKeys.indexOf(history.location.key);
+
+          if (prevIndex !== -1) allKeys[prevIndex] = location.key;
+
+          setState({ action: action, location: location });
+        }
+      } else {
+        (0, _warning2.default)(state === undefined, 'Browser history cannot replace state in browsers that do not support HTML5 history');
+
+        window.location.replace(href);
+      }
+    });
+  };
+
+  var go = function go(n) {
+    globalHistory.go(n);
+  };
+
+  var goBack = function goBack() {
+    return go(-1);
+  };
+
+  var goForward = function goForward() {
+    return go(1);
+  };
+
+  var listenerCount = 0;
+
+  var checkDOMListeners = function checkDOMListeners(delta) {
+    listenerCount += delta;
+
+    if (listenerCount === 1) {
+      (0, _DOMUtils.addEventListener)(window, PopStateEvent, handlePopState);
+
+      if (needsHashChangeListener) (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleHashChange);
+    } else if (listenerCount === 0) {
+      (0, _DOMUtils.removeEventListener)(window, PopStateEvent, handlePopState);
+
+      if (needsHashChangeListener) (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleHashChange);
+    }
+  };
+
+  var isBlocked = false;
+
+  var block = function block() {
+    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+    var unblock = transitionManager.setPrompt(prompt);
+
+    if (!isBlocked) {
+      checkDOMListeners(1);
+      isBlocked = true;
+    }
+
+    return function () {
+      if (isBlocked) {
+        isBlocked = false;
+        checkDOMListeners(-1);
+      }
+
+      return unblock();
+    };
+  };
+
+  var listen = function listen(listener) {
+    var unlisten = transitionManager.appendListener(listener);
+    checkDOMListeners(1);
+
+    return function () {
+      checkDOMListeners(-1);
+      unlisten();
+    };
+  };
+
+  var history = {
+    length: globalHistory.length,
+    action: 'POP',
+    location: initialLocation,
+    createHref: createHref,
+    push: push,
+    replace: replace,
+    go: go,
+    goBack: goBack,
+    goForward: goForward,
+    block: block,
+    listen: listen
+  };
+
+  return history;
+};
+
+exports.default = createBrowserHistory;
+
+/***/ }),
+/* 66 */
+/*!******************************************************!*\
+  !*** ./node_modules/history/es/createHashHistory.js ***!
+  \******************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _warning = __webpack_require__(/*! warning */ 1);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _invariant = __webpack_require__(/*! invariant */ 4);
+
+var _invariant2 = _interopRequireDefault(_invariant);
+
+var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 12);
+
+var _PathUtils = __webpack_require__(/*! ./PathUtils */ 9);
+
+var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 21);
+
+var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
+
+var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 34);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var HashChangeEvent = 'hashchange';
+
+var HashPathCoders = {
+  hashbang: {
+    encodePath: function encodePath(path) {
+      return path.charAt(0) === '!' ? path : '!/' + (0, _PathUtils.stripLeadingSlash)(path);
+    },
+    decodePath: function decodePath(path) {
+      return path.charAt(0) === '!' ? path.substr(1) : path;
+    }
+  },
+  noslash: {
+    encodePath: _PathUtils.stripLeadingSlash,
+    decodePath: _PathUtils.addLeadingSlash
+  },
+  slash: {
+    encodePath: _PathUtils.addLeadingSlash,
+    decodePath: _PathUtils.addLeadingSlash
+  }
+};
+
+var getHashPath = function getHashPath() {
+  // We can't use window.location.hash here because it's not
+  // consistent across browsers - Firefox will pre-decode it!
+  var href = window.location.href;
+  var hashIndex = href.indexOf('#');
+  return hashIndex === -1 ? '' : href.substring(hashIndex + 1);
+};
+
+var pushHashPath = function pushHashPath(path) {
+  return window.location.hash = path;
+};
+
+var replaceHashPath = function replaceHashPath(path) {
+  var hashIndex = window.location.href.indexOf('#');
+
+  window.location.replace(window.location.href.slice(0, hashIndex >= 0 ? hashIndex : 0) + '#' + path);
+};
+
+var createHashHistory = function createHashHistory() {
+  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  (0, _invariant2.default)(_DOMUtils.canUseDOM, 'Hash history needs a DOM');
+
+  var globalHistory = window.history;
+  var canGoWithoutReload = (0, _DOMUtils.supportsGoWithoutReloadUsingHash)();
+
+  var _props$getUserConfirm = props.getUserConfirmation,
+      getUserConfirmation = _props$getUserConfirm === undefined ? _DOMUtils.getConfirmation : _props$getUserConfirm,
+      _props$hashType = props.hashType,
+      hashType = _props$hashType === undefined ? 'slash' : _props$hashType;
+
+  var basename = props.basename ? (0, _PathUtils.stripTrailingSlash)((0, _PathUtils.addLeadingSlash)(props.basename)) : '';
+
+  var _HashPathCoders$hashT = HashPathCoders[hashType],
+      encodePath = _HashPathCoders$hashT.encodePath,
+      decodePath = _HashPathCoders$hashT.decodePath;
+
+  var getDOMLocation = function getDOMLocation() {
+    var path = decodePath(getHashPath());
+
+    (0, _warning2.default)(!basename || (0, _PathUtils.hasBasename)(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path "' + path + '" to begin with "' + basename + '".');
+
+    if (basename) path = (0, _PathUtils.stripBasename)(path, basename);
+
+    return (0, _LocationUtils.createLocation)(path);
+  };
+
+  var transitionManager = (0, _createTransitionManager2.default)();
+
+  var setState = function setState(nextState) {
+    _extends(history, nextState);
+
+    history.length = globalHistory.length;
+
+    transitionManager.notifyListeners(history.location, history.action);
+  };
+
+  var forceNextPop = false;
+  var ignorePath = null;
+
+  var handleHashChange = function handleHashChange() {
+    var path = getHashPath();
+    var encodedPath = encodePath(path);
+
+    if (path !== encodedPath) {
+      // Ensure we always have a properly-encoded hash.
+      replaceHashPath(encodedPath);
+    } else {
+      var location = getDOMLocation();
+      var prevLocation = history.location;
+
+      if (!forceNextPop && (0, _LocationUtils.locationsAreEqual)(prevLocation, location)) return; // A hashchange doesn't always == location change.
+
+      if (ignorePath === (0, _PathUtils.createPath)(location)) return; // Ignore this change; we already setState in push/replace.
+
+      ignorePath = null;
+
+      handlePop(location);
+    }
+  };
+
+  var handlePop = function handlePop(location) {
+    if (forceNextPop) {
+      forceNextPop = false;
+      setState();
+    } else {
+      var action = 'POP';
+
+      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+        if (ok) {
+          setState({ action: action, location: location });
+        } else {
+          revertPop(location);
+        }
+      });
+    }
+  };
+
+  var revertPop = function revertPop(fromLocation) {
+    var toLocation = history.location;
+
+    // TODO: We could probably make this more reliable by
+    // keeping a list of paths we've seen in sessionStorage.
+    // Instead, we just default to 0 for paths we don't know.
+
+    var toIndex = allPaths.lastIndexOf((0, _PathUtils.createPath)(toLocation));
+
+    if (toIndex === -1) toIndex = 0;
+
+    var fromIndex = allPaths.lastIndexOf((0, _PathUtils.createPath)(fromLocation));
+
+    if (fromIndex === -1) fromIndex = 0;
+
+    var delta = toIndex - fromIndex;
+
+    if (delta) {
+      forceNextPop = true;
+      go(delta);
+    }
+  };
+
+  // Ensure the hash is encoded properly before doing anything else.
+  var path = getHashPath();
+  var encodedPath = encodePath(path);
+
+  if (path !== encodedPath) replaceHashPath(encodedPath);
+
+  var initialLocation = getDOMLocation();
+  var allPaths = [(0, _PathUtils.createPath)(initialLocation)];
+
+  // Public interface
+
+  var createHref = function createHref(location) {
+    return '#' + encodePath(basename + (0, _PathUtils.createPath)(location));
+  };
+
+  var push = function push(path, state) {
+    (0, _warning2.default)(state === undefined, 'Hash history cannot push state; it is ignored');
+
+    var action = 'PUSH';
+    var location = (0, _LocationUtils.createLocation)(path, undefined, undefined, history.location);
+
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+
+      var path = (0, _PathUtils.createPath)(location);
+      var encodedPath = encodePath(basename + path);
+      var hashChanged = getHashPath() !== encodedPath;
+
+      if (hashChanged) {
+        // We cannot tell if a hashchange was caused by a PUSH, so we'd
+        // rather setState here and ignore the hashchange. The caveat here
+        // is that other hash histories in the page will consider it a POP.
+        ignorePath = path;
+        pushHashPath(encodedPath);
+
+        var prevIndex = allPaths.lastIndexOf((0, _PathUtils.createPath)(history.location));
+        var nextPaths = allPaths.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);
+
+        nextPaths.push(path);
+        allPaths = nextPaths;
+
+        setState({ action: action, location: location });
+      } else {
+        (0, _warning2.default)(false, 'Hash history cannot PUSH the same path; a new entry will not be added to the history stack');
+
+        setState();
+      }
+    });
+  };
+
+  var replace = function replace(path, state) {
+    (0, _warning2.default)(state === undefined, 'Hash history cannot replace state; it is ignored');
+
+    var action = 'REPLACE';
+    var location = (0, _LocationUtils.createLocation)(path, undefined, undefined, history.location);
+
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+
+      var path = (0, _PathUtils.createPath)(location);
+      var encodedPath = encodePath(basename + path);
+      var hashChanged = getHashPath() !== encodedPath;
+
+      if (hashChanged) {
+        // We cannot tell if a hashchange was caused by a REPLACE, so we'd
+        // rather setState here and ignore the hashchange. The caveat here
+        // is that other hash histories in the page will consider it a POP.
+        ignorePath = path;
+        replaceHashPath(encodedPath);
+      }
+
+      var prevIndex = allPaths.indexOf((0, _PathUtils.createPath)(history.location));
+
+      if (prevIndex !== -1) allPaths[prevIndex] = path;
+
+      setState({ action: action, location: location });
+    });
+  };
+
+  var go = function go(n) {
+    (0, _warning2.default)(canGoWithoutReload, 'Hash history go(n) causes a full page reload in this browser');
+
+    globalHistory.go(n);
+  };
+
+  var goBack = function goBack() {
+    return go(-1);
+  };
+
+  var goForward = function goForward() {
+    return go(1);
+  };
+
+  var listenerCount = 0;
+
+  var checkDOMListeners = function checkDOMListeners(delta) {
+    listenerCount += delta;
+
+    if (listenerCount === 1) {
+      (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleHashChange);
+    } else if (listenerCount === 0) {
+      (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleHashChange);
+    }
+  };
+
+  var isBlocked = false;
+
+  var block = function block() {
+    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+    var unblock = transitionManager.setPrompt(prompt);
+
+    if (!isBlocked) {
+      checkDOMListeners(1);
+      isBlocked = true;
+    }
+
+    return function () {
+      if (isBlocked) {
+        isBlocked = false;
+        checkDOMListeners(-1);
+      }
+
+      return unblock();
+    };
+  };
+
+  var listen = function listen(listener) {
+    var unlisten = transitionManager.appendListener(listener);
+    checkDOMListeners(1);
+
+    return function () {
+      checkDOMListeners(-1);
+      unlisten();
+    };
+  };
+
+  var history = {
+    length: globalHistory.length,
+    action: 'POP',
+    location: initialLocation,
+    createHref: createHref,
+    push: push,
+    replace: replace,
+    go: go,
+    goBack: goBack,
+    goForward: goForward,
+    block: block,
+    listen: listen
+  };
+
+  return history;
+};
+
+exports.default = createHashHistory;
+
+/***/ }),
+/* 67 */
+/*!********************************************************!*\
+  !*** ./node_modules/history/es/createMemoryHistory.js ***!
+  \********************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _warning = __webpack_require__(/*! warning */ 1);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _PathUtils = __webpack_require__(/*! ./PathUtils */ 9);
+
+var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 12);
+
+var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 21);
+
+var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+};
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var clamp = function clamp(n, lowerBound, upperBound) {
+  return Math.min(Math.max(n, lowerBound), upperBound);
+};
+
+/**
+ * Creates a history object that stores locations in memory.
+ */
+var createMemoryHistory = function createMemoryHistory() {
+  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var getUserConfirmation = props.getUserConfirmation,
+      _props$initialEntries = props.initialEntries,
+      initialEntries = _props$initialEntries === undefined ? ['/'] : _props$initialEntries,
+      _props$initialIndex = props.initialIndex,
+      initialIndex = _props$initialIndex === undefined ? 0 : _props$initialIndex,
+      _props$keyLength = props.keyLength,
+      keyLength = _props$keyLength === undefined ? 6 : _props$keyLength;
+
+  var transitionManager = (0, _createTransitionManager2.default)();
+
+  var setState = function setState(nextState) {
+    _extends(history, nextState);
+
+    history.length = history.entries.length;
+
+    transitionManager.notifyListeners(history.location, history.action);
+  };
+
+  var createKey = function createKey() {
+    return Math.random().toString(36).substr(2, keyLength);
+  };
+
+  var index = clamp(initialIndex, 0, initialEntries.length - 1);
+  var entries = initialEntries.map(function (entry) {
+    return typeof entry === 'string' ? (0, _LocationUtils.createLocation)(entry, undefined, createKey()) : (0, _LocationUtils.createLocation)(entry, undefined, entry.key || createKey());
+  });
+
+  // Public interface
+
+  var createHref = _PathUtils.createPath;
+
+  var push = function push(path, state) {
+    (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
+
+    var action = 'PUSH';
+    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
+
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+
+      var prevIndex = history.index;
+      var nextIndex = prevIndex + 1;
+
+      var nextEntries = history.entries.slice(0);
+      if (nextEntries.length > nextIndex) {
+        nextEntries.splice(nextIndex, nextEntries.length - nextIndex, location);
+      } else {
+        nextEntries.push(location);
+      }
+
+      setState({
+        action: action,
+        location: location,
+        index: nextIndex,
+        entries: nextEntries
+      });
+    });
+  };
+
+  var replace = function replace(path, state) {
+    (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
+
+    var action = 'REPLACE';
+    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
+
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (!ok) return;
+
+      history.entries[history.index] = location;
+
+      setState({ action: action, location: location });
+    });
+  };
+
+  var go = function go(n) {
+    var nextIndex = clamp(history.index + n, 0, history.entries.length - 1);
+
+    var action = 'POP';
+    var location = history.entries[nextIndex];
+
+    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
+      if (ok) {
+        setState({
+          action: action,
+          location: location,
+          index: nextIndex
+        });
+      } else {
+        // Mimic the behavior of DOM histories by
+        // causing a render after a cancelled POP.
+        setState();
+      }
+    });
+  };
+
+  var goBack = function goBack() {
+    return go(-1);
+  };
+
+  var goForward = function goForward() {
+    return go(1);
+  };
+
+  var canGo = function canGo(n) {
+    var nextIndex = history.index + n;
+    return nextIndex >= 0 && nextIndex < history.entries.length;
+  };
+
+  var block = function block() {
+    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+    return transitionManager.setPrompt(prompt);
+  };
+
+  var listen = function listen(listener) {
+    return transitionManager.appendListener(listener);
+  };
+
+  var history = {
+    length: entries.length,
+    action: 'POP',
+    location: entries[index],
+    index: index,
+    entries: entries,
+    createHref: createHref,
+    push: push,
+    replace: replace,
+    go: go,
+    goBack: goBack,
+    goForward: goForward,
+    canGo: canGo,
+    block: block,
+    listen: listen
+  };
+
+  return history;
+};
+
+exports.default = createMemoryHistory;
+
+/***/ }),
+/* 68 */
+/*!**********************************************************!*\
+  !*** ./node_modules/react-router-dom/es/StaticRouter.js ***!
+  \**********************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _StaticRouter = __webpack_require__(/*! react-router/es/StaticRouter */ 69);
+
+var _StaticRouter2 = _interopRequireDefault(_StaticRouter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _StaticRouter2.default; // Written in this round about way for babel-transform-imports
+
+/***/ }),
+/* 69 */
 /*!******************************************************!*\
   !*** ./node_modules/react-router/es/StaticRouter.js ***!
   \******************************************************/
@@ -3963,11 +5473,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _warning = __webpack_require__(/*! warning */ 2);
+var _warning = __webpack_require__(/*! warning */ 1);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(/*! invariant */ 5);
+var _invariant = __webpack_require__(/*! invariant */ 4);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -3975,13 +5485,13 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(/*! prop-types */ 4);
+var _propTypes = __webpack_require__(/*! prop-types */ 3);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _PathUtils = __webpack_require__(/*! history/PathUtils */ 14);
+var _PathUtils = __webpack_require__(/*! history/PathUtils */ 8);
 
-var _Router = __webpack_require__(/*! ./Router */ 15);
+var _Router = __webpack_require__(/*! ./Router */ 19);
 
 var _Router2 = _interopRequireDefault(_Router);
 
@@ -4170,7 +5680,31 @@ StaticRouter.childContextTypes = {
 exports.default = StaticRouter;
 
 /***/ }),
-/* 57 */
+/* 70 */
+/*!****************************************************!*\
+  !*** ./node_modules/react-router-dom/es/Switch.js ***!
+  \****************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Switch = __webpack_require__(/*! react-router/es/Switch */ 71);
+
+var _Switch2 = _interopRequireDefault(_Switch);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Switch2.default; // Written in this round about way for babel-transform-imports
+
+/***/ }),
+/* 71 */
 /*!************************************************!*\
   !*** ./node_modules/react-router/es/Switch.js ***!
   \************************************************/
@@ -4191,19 +5725,19 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(/*! prop-types */ 4);
+var _propTypes = __webpack_require__(/*! prop-types */ 3);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _warning = __webpack_require__(/*! warning */ 2);
+var _warning = __webpack_require__(/*! warning */ 1);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(/*! invariant */ 5);
+var _invariant = __webpack_require__(/*! invariant */ 4);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _matchPath = __webpack_require__(/*! ./matchPath */ 17);
+var _matchPath = __webpack_require__(/*! ./matchPath */ 20);
 
 var _matchPath2 = _interopRequireDefault(_matchPath);
 
@@ -4295,7 +5829,55 @@ Switch.propTypes = {
 exports.default = Switch;
 
 /***/ }),
-/* 58 */
+/* 72 */
+/*!*******************************************************!*\
+  !*** ./node_modules/react-router-dom/es/matchPath.js ***!
+  \*******************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _matchPath = __webpack_require__(/*! react-router/es/matchPath */ 20);
+
+var _matchPath2 = _interopRequireDefault(_matchPath);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _matchPath2.default; // Written in this round about way for babel-transform-imports
+
+/***/ }),
+/* 73 */
+/*!********************************************************!*\
+  !*** ./node_modules/react-router-dom/es/withRouter.js ***!
+  \********************************************************/
+/*! dynamic exports provided */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _withRouter = __webpack_require__(/*! react-router/es/withRouter */ 74);
+
+var _withRouter2 = _interopRequireDefault(_withRouter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _withRouter2.default; // Written in this round about way for babel-transform-imports
+
+/***/ }),
+/* 74 */
 /*!****************************************************!*\
   !*** ./node_modules/react-router/es/withRouter.js ***!
   \****************************************************/
@@ -4314,15 +5896,15 @@ var _react = __webpack_require__(/*! react */ 0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(/*! prop-types */ 4);
+var _propTypes = __webpack_require__(/*! prop-types */ 3);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _hoistNonReactStatics = __webpack_require__(/*! hoist-non-react-statics */ 59);
+var _hoistNonReactStatics = __webpack_require__(/*! hoist-non-react-statics */ 75);
 
 var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
-var _Route = __webpack_require__(/*! ./Route */ 28);
+var _Route = __webpack_require__(/*! ./Route */ 33);
 
 var _Route2 = _interopRequireDefault(_Route);
 
@@ -4369,7 +5951,7 @@ var withRouter = function withRouter(Component) {
 exports.default = withRouter;
 
 /***/ }),
-/* 59 */
+/* 75 */
 /*!*******************************************************!*\
   !*** ./node_modules/hoist-non-react-statics/index.js ***!
   \*******************************************************/
@@ -4447,92 +6029,7 @@ module.exports = function hoistNonReactStatics(targetComponent, sourceComponent,
 };
 
 /***/ }),
-/* 60 */
-/*!********************!*\
-  !*** ./app/App.js ***!
-  \********************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ 0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 72);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // REACT MODULES ==================================
-
-
-// Import components ==============================
-
-
-//=================================================
-
-
-var AppComponent = function (_React$Component) {
-    _inherits(AppComponent, _React$Component);
-
-    function AppComponent(props) {
-        _classCallCheck(this, AppComponent);
-
-        var _this = _possibleConstructorReturn(this, (AppComponent.__proto__ || Object.getPrototypeOf(AppComponent)).call(this, props));
-
-        _this.state = {};
-        return _this;
-    }
-
-    _createClass(AppComponent, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                { className: 'container' },
-                _react2.default.createElement(
-                    'h1',
-                    null,
-                    'HEELO APP WORLD'
-                )
-            );
-        }
-    }]);
-
-    return AppComponent;
-}(_react2.default.Component);
-
-var App = function App() {
-    return _react2.default.createElement(
-        _reactRouterDom.BrowserRouter,
-        null,
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: AppComponent })
-    );
-};
-
-exports.default = App;
-
-/***/ }),
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */
+/* 76 */
 /*!********************!*\
   !*** ./app/Nav.js ***!
   \********************/
@@ -4571,21 +6068,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Nav = function (_React$Component) {
     _inherits(Nav, _React$Component);
 
-    function Nav(props) {
+    function Nav() {
         _classCallCheck(this, Nav);
 
-        var _this = _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).call(this, props));
-
-        _this.state = {};
-        return _this;
+        return _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).apply(this, arguments));
     }
 
     _createClass(Nav, [{
         key: "render",
+
+        // constructor (props) {
+        //     super(props);
+        //     this.state = {};
+        // }
+
         value: function render() {
             return _react2.default.createElement(
-                "div",
-                null,
+                "ul",
+                { "class": "nav navbar-nav navbar-right" },
                 _react2.default.createElement(
                     "li",
                     { className: "dropdown" },
@@ -5084,1509 +6584,6 @@ var Nav = function (_React$Component) {
 
 exports.default = Nav;
 
-/***/ }),
-/* 68 */
-/*!****************************************************!*\
-  !*** ./node_modules/react-router-dom/es/Router.js ***!
-  \****************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Router = __webpack_require__(/*! react-router/es/Router */ 15);
-
-var _Router2 = _interopRequireDefault(_Router);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Router2.default; // Written in this round about way for babel-transform-imports
-
-/***/ }),
-/* 69 */
-/*!******************************************!*\
-  !*** ./node_modules/history/DOMUtils.js ***!
-  \******************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-var canUseDOM = exports.canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-
-var addEventListener = exports.addEventListener = function addEventListener(node, event, listener) {
-  return node.addEventListener ? node.addEventListener(event, listener, false) : node.attachEvent('on' + event, listener);
-};
-
-var removeEventListener = exports.removeEventListener = function removeEventListener(node, event, listener) {
-  return node.removeEventListener ? node.removeEventListener(event, listener, false) : node.detachEvent('on' + event, listener);
-};
-
-var getConfirmation = exports.getConfirmation = function getConfirmation(message, callback) {
-  return callback(window.confirm(message));
-}; // eslint-disable-line no-alert
-
-/**
- * Returns true if the HTML5 history API is supported. Taken from Modernizr.
- *
- * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
- * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
- * changed to avoid false negatives for Windows Phones: https://github.com/reactjs/react-router/issues/586
- */
-var supportsHistory = exports.supportsHistory = function supportsHistory() {
-  var ua = window.navigator.userAgent;
-
-  if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) return false;
-
-  return window.history && 'pushState' in window.history;
-};
-
-/**
- * Returns true if browser fires popstate on hash change.
- * IE10 and IE11 do not.
- */
-var supportsPopStateOnHashChange = exports.supportsPopStateOnHashChange = function supportsPopStateOnHashChange() {
-  return window.navigator.userAgent.indexOf('Trident') === -1;
-};
-
-/**
- * Returns false if using go(n) with hash history causes a full page reload.
- */
-var supportsGoWithoutReloadUsingHash = exports.supportsGoWithoutReloadUsingHash = function supportsGoWithoutReloadUsingHash() {
-  return window.navigator.userAgent.indexOf('Firefox') === -1;
-};
-
-/**
- * Returns true if a given popstate event is an extraneous WebKit event.
- * Accounts for the fact that Chrome on iOS fires real popstate events
- * containing undefined state when pressing the back button.
- */
-var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
-  return event.state === undefined && navigator.userAgent.indexOf('CriOS') === -1;
-};
-
-/***/ }),
-/* 70 */
-/*!**************************************************!*\
-  !*** ./node_modules/react-router-dom/es/Link.js ***!
-  \**************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _react = __webpack_require__(/*! react */ 0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(/*! prop-types */ 4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _invariant = __webpack_require__(/*! invariant */ 5);
-
-var _invariant2 = _interopRequireDefault(_invariant);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }return target;
-};
-
-function _objectWithoutProperties(obj, keys) {
-  var target = {};for (var i in obj) {
-    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
-  }return target;
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-var isModifiedEvent = function isModifiedEvent(event) {
-  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-};
-
-/**
- * The public API for rendering a history-aware <a>.
- */
-
-var Link = function (_React$Component) {
-  _inherits(Link, _React$Component);
-
-  function Link() {
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Link);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleClick = function (event) {
-      if (_this.props.onClick) _this.props.onClick(event);
-
-      if (!event.defaultPrevented && // onClick prevented default
-      event.button === 0 && // ignore right clicks
-      !_this.props.target && // let browser handle "target=_blank" etc.
-      !isModifiedEvent(event) // ignore clicks with modifier keys
-      ) {
-          event.preventDefault();
-
-          var history = _this.context.router.history;
-          var _this$props = _this.props,
-              replace = _this$props.replace,
-              to = _this$props.to;
-
-          if (replace) {
-            history.replace(to);
-          } else {
-            history.push(to);
-          }
-        }
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  Link.prototype.render = function render() {
-    var _props = this.props,
-        replace = _props.replace,
-        to = _props.to,
-        innerRef = _props.innerRef,
-        props = _objectWithoutProperties(_props, ['replace', 'to', 'innerRef']); // eslint-disable-line no-unused-vars
-
-    (0, _invariant2.default)(this.context.router, 'You should not use <Link> outside a <Router>');
-
-    var href = this.context.router.history.createHref(typeof to === 'string' ? { pathname: to } : to);
-
-    return _react2.default.createElement('a', _extends({}, props, { onClick: this.handleClick, href: href, ref: innerRef }));
-  };
-
-  return Link;
-}(_react2.default.Component);
-
-Link.propTypes = {
-  onClick: _propTypes2.default.func,
-  target: _propTypes2.default.string,
-  replace: _propTypes2.default.bool,
-  to: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]).isRequired,
-  innerRef: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.func])
-};
-Link.defaultProps = {
-  replace: false
-};
-Link.contextTypes = {
-  router: _propTypes2.default.shape({
-    history: _propTypes2.default.shape({
-      push: _propTypes2.default.func.isRequired,
-      replace: _propTypes2.default.func.isRequired,
-      createHref: _propTypes2.default.func.isRequired
-    }).isRequired
-  }).isRequired
-};
-
-exports.default = Link;
-
-/***/ }),
-/* 71 */
-/*!***************************************************!*\
-  !*** ./node_modules/react-router-dom/es/Route.js ***!
-  \***************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Route = __webpack_require__(/*! react-router/es/Route */ 28);
-
-var _Route2 = _interopRequireDefault(_Route);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Route2.default; // Written in this round about way for babel-transform-imports
-
-/***/ }),
-/* 72 */
-/*!***************************************************!*\
-  !*** ./node_modules/react-router-dom/es/index.js ***!
-  \***************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.withRouter = exports.matchPath = exports.Switch = exports.StaticRouter = exports.Router = exports.Route = exports.Redirect = exports.Prompt = exports.NavLink = exports.MemoryRouter = exports.Link = exports.HashRouter = exports.BrowserRouter = undefined;
-
-var _BrowserRouter2 = __webpack_require__(/*! ./BrowserRouter */ 73);
-
-var _BrowserRouter3 = _interopRequireDefault(_BrowserRouter2);
-
-var _HashRouter2 = __webpack_require__(/*! ./HashRouter */ 75);
-
-var _HashRouter3 = _interopRequireDefault(_HashRouter2);
-
-var _Link2 = __webpack_require__(/*! ./Link */ 70);
-
-var _Link3 = _interopRequireDefault(_Link2);
-
-var _MemoryRouter2 = __webpack_require__(/*! ./MemoryRouter */ 77);
-
-var _MemoryRouter3 = _interopRequireDefault(_MemoryRouter2);
-
-var _NavLink2 = __webpack_require__(/*! ./NavLink */ 78);
-
-var _NavLink3 = _interopRequireDefault(_NavLink2);
-
-var _Prompt2 = __webpack_require__(/*! ./Prompt */ 79);
-
-var _Prompt3 = _interopRequireDefault(_Prompt2);
-
-var _Redirect2 = __webpack_require__(/*! ./Redirect */ 80);
-
-var _Redirect3 = _interopRequireDefault(_Redirect2);
-
-var _Route2 = __webpack_require__(/*! ./Route */ 71);
-
-var _Route3 = _interopRequireDefault(_Route2);
-
-var _Router2 = __webpack_require__(/*! ./Router */ 68);
-
-var _Router3 = _interopRequireDefault(_Router2);
-
-var _StaticRouter2 = __webpack_require__(/*! ./StaticRouter */ 81);
-
-var _StaticRouter3 = _interopRequireDefault(_StaticRouter2);
-
-var _Switch2 = __webpack_require__(/*! ./Switch */ 82);
-
-var _Switch3 = _interopRequireDefault(_Switch2);
-
-var _matchPath2 = __webpack_require__(/*! ./matchPath */ 83);
-
-var _matchPath3 = _interopRequireDefault(_matchPath2);
-
-var _withRouter2 = __webpack_require__(/*! ./withRouter */ 84);
-
-var _withRouter3 = _interopRequireDefault(_withRouter2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.BrowserRouter = _BrowserRouter3.default;
-exports.HashRouter = _HashRouter3.default;
-exports.Link = _Link3.default;
-exports.MemoryRouter = _MemoryRouter3.default;
-exports.NavLink = _NavLink3.default;
-exports.Prompt = _Prompt3.default;
-exports.Redirect = _Redirect3.default;
-exports.Route = _Route3.default;
-exports.Router = _Router3.default;
-exports.StaticRouter = _StaticRouter3.default;
-exports.Switch = _Switch3.default;
-exports.matchPath = _matchPath3.default;
-exports.withRouter = _withRouter3.default;
-
-/***/ }),
-/* 73 */
-/*!***********************************************************!*\
-  !*** ./node_modules/react-router-dom/es/BrowserRouter.js ***!
-  \***********************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _warning = __webpack_require__(/*! warning */ 2);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _react = __webpack_require__(/*! react */ 0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(/*! prop-types */ 4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _createBrowserHistory = __webpack_require__(/*! history/createBrowserHistory */ 74);
-
-var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
-
-var _Router = __webpack_require__(/*! ./Router */ 68);
-
-var _Router2 = _interopRequireDefault(_Router);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-/**
- * The public API for a <Router> that uses HTML5 history.
- */
-
-var BrowserRouter = function (_React$Component) {
-  _inherits(BrowserRouter, _React$Component);
-
-  function BrowserRouter() {
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, BrowserRouter);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.history = (0, _createBrowserHistory2.default)(_this.props), _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  BrowserRouter.prototype.componentWillMount = function componentWillMount() {
-    (0, _warning2.default)(!this.props.history, '<BrowserRouter> ignores the history prop. To use a custom history, ' + 'use `import { Router }` instead of `import { BrowserRouter as Router }`.');
-  };
-
-  BrowserRouter.prototype.render = function render() {
-    return _react2.default.createElement(_Router2.default, { history: this.history, children: this.props.children });
-  };
-
-  return BrowserRouter;
-}(_react2.default.Component);
-
-BrowserRouter.propTypes = {
-  basename: _propTypes2.default.string,
-  forceRefresh: _propTypes2.default.bool,
-  getUserConfirmation: _propTypes2.default.func,
-  keyLength: _propTypes2.default.number,
-  children: _propTypes2.default.node
-};
-
-exports.default = BrowserRouter;
-
-/***/ }),
-/* 74 */
-/*!******************************************************!*\
-  !*** ./node_modules/history/createBrowserHistory.js ***!
-  \******************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-exports.__esModule = true;
-
-var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
-  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
-} : function (obj) {
-  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
-};
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }return target;
-};
-
-var _warning = __webpack_require__(/*! warning */ 2);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _invariant = __webpack_require__(/*! invariant */ 5);
-
-var _invariant2 = _interopRequireDefault(_invariant);
-
-var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 46);
-
-var _PathUtils = __webpack_require__(/*! ./PathUtils */ 14);
-
-var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 47);
-
-var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
-
-var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 69);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var PopStateEvent = 'popstate';
-var HashChangeEvent = 'hashchange';
-
-var getHistoryState = function getHistoryState() {
-  try {
-    return window.history.state || {};
-  } catch (e) {
-    // IE 11 sometimes throws when accessing window.history.state
-    // See https://github.com/ReactTraining/history/pull/289
-    return {};
-  }
-};
-
-/**
- * Creates a history object that uses the HTML5 history API including
- * pushState, replaceState, and the popstate event.
- */
-var createBrowserHistory = function createBrowserHistory() {
-  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-  (0, _invariant2.default)(_DOMUtils.canUseDOM, 'Browser history needs a DOM');
-
-  var globalHistory = window.history;
-  var canUseHistory = (0, _DOMUtils.supportsHistory)();
-  var needsHashChangeListener = !(0, _DOMUtils.supportsPopStateOnHashChange)();
-
-  var _props$forceRefresh = props.forceRefresh,
-      forceRefresh = _props$forceRefresh === undefined ? false : _props$forceRefresh,
-      _props$getUserConfirm = props.getUserConfirmation,
-      getUserConfirmation = _props$getUserConfirm === undefined ? _DOMUtils.getConfirmation : _props$getUserConfirm,
-      _props$keyLength = props.keyLength,
-      keyLength = _props$keyLength === undefined ? 6 : _props$keyLength;
-
-  var basename = props.basename ? (0, _PathUtils.stripTrailingSlash)((0, _PathUtils.addLeadingSlash)(props.basename)) : '';
-
-  var getDOMLocation = function getDOMLocation(historyState) {
-    var _ref = historyState || {},
-        key = _ref.key,
-        state = _ref.state;
-
-    var _window$location = window.location,
-        pathname = _window$location.pathname,
-        search = _window$location.search,
-        hash = _window$location.hash;
-
-    var path = pathname + search + hash;
-
-    (0, _warning2.default)(!basename || (0, _PathUtils.hasBasename)(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path "' + path + '" to begin with "' + basename + '".');
-
-    if (basename) path = (0, _PathUtils.stripBasename)(path, basename);
-
-    return (0, _LocationUtils.createLocation)(path, state, key);
-  };
-
-  var createKey = function createKey() {
-    return Math.random().toString(36).substr(2, keyLength);
-  };
-
-  var transitionManager = (0, _createTransitionManager2.default)();
-
-  var setState = function setState(nextState) {
-    _extends(history, nextState);
-
-    history.length = globalHistory.length;
-
-    transitionManager.notifyListeners(history.location, history.action);
-  };
-
-  var handlePopState = function handlePopState(event) {
-    // Ignore extraneous popstate events in WebKit.
-    if ((0, _DOMUtils.isExtraneousPopstateEvent)(event)) return;
-
-    handlePop(getDOMLocation(event.state));
-  };
-
-  var handleHashChange = function handleHashChange() {
-    handlePop(getDOMLocation(getHistoryState()));
-  };
-
-  var forceNextPop = false;
-
-  var handlePop = function handlePop(location) {
-    if (forceNextPop) {
-      forceNextPop = false;
-      setState();
-    } else {
-      var action = 'POP';
-
-      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-        if (ok) {
-          setState({ action: action, location: location });
-        } else {
-          revertPop(location);
-        }
-      });
-    }
-  };
-
-  var revertPop = function revertPop(fromLocation) {
-    var toLocation = history.location;
-
-    // TODO: We could probably make this more reliable by
-    // keeping a list of keys we've seen in sessionStorage.
-    // Instead, we just default to 0 for keys we don't know.
-
-    var toIndex = allKeys.indexOf(toLocation.key);
-
-    if (toIndex === -1) toIndex = 0;
-
-    var fromIndex = allKeys.indexOf(fromLocation.key);
-
-    if (fromIndex === -1) fromIndex = 0;
-
-    var delta = toIndex - fromIndex;
-
-    if (delta) {
-      forceNextPop = true;
-      go(delta);
-    }
-  };
-
-  var initialLocation = getDOMLocation(getHistoryState());
-  var allKeys = [initialLocation.key];
-
-  // Public interface
-
-  var createHref = function createHref(location) {
-    return basename + (0, _PathUtils.createPath)(location);
-  };
-
-  var push = function push(path, state) {
-    (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to push when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
-
-    var action = 'PUSH';
-    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var href = createHref(location);
-      var key = location.key,
-          state = location.state;
-
-      if (canUseHistory) {
-        globalHistory.pushState({ key: key, state: state }, null, href);
-
-        if (forceRefresh) {
-          window.location.href = href;
-        } else {
-          var prevIndex = allKeys.indexOf(history.location.key);
-          var nextKeys = allKeys.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);
-
-          nextKeys.push(location.key);
-          allKeys = nextKeys;
-
-          setState({ action: action, location: location });
-        }
-      } else {
-        (0, _warning2.default)(state === undefined, 'Browser history cannot push state in browsers that do not support HTML5 history');
-
-        window.location.href = href;
-      }
-    });
-  };
-
-  var replace = function replace(path, state) {
-    (0, _warning2.default)(!((typeof path === 'undefined' ? 'undefined' : _typeof(path)) === 'object' && path.state !== undefined && state !== undefined), 'You should avoid providing a 2nd state argument to replace when the 1st ' + 'argument is a location-like object that already has state; it is ignored');
-
-    var action = 'REPLACE';
-    var location = (0, _LocationUtils.createLocation)(path, state, createKey(), history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var href = createHref(location);
-      var key = location.key,
-          state = location.state;
-
-      if (canUseHistory) {
-        globalHistory.replaceState({ key: key, state: state }, null, href);
-
-        if (forceRefresh) {
-          window.location.replace(href);
-        } else {
-          var prevIndex = allKeys.indexOf(history.location.key);
-
-          if (prevIndex !== -1) allKeys[prevIndex] = location.key;
-
-          setState({ action: action, location: location });
-        }
-      } else {
-        (0, _warning2.default)(state === undefined, 'Browser history cannot replace state in browsers that do not support HTML5 history');
-
-        window.location.replace(href);
-      }
-    });
-  };
-
-  var go = function go(n) {
-    globalHistory.go(n);
-  };
-
-  var goBack = function goBack() {
-    return go(-1);
-  };
-
-  var goForward = function goForward() {
-    return go(1);
-  };
-
-  var listenerCount = 0;
-
-  var checkDOMListeners = function checkDOMListeners(delta) {
-    listenerCount += delta;
-
-    if (listenerCount === 1) {
-      (0, _DOMUtils.addEventListener)(window, PopStateEvent, handlePopState);
-
-      if (needsHashChangeListener) (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleHashChange);
-    } else if (listenerCount === 0) {
-      (0, _DOMUtils.removeEventListener)(window, PopStateEvent, handlePopState);
-
-      if (needsHashChangeListener) (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleHashChange);
-    }
-  };
-
-  var isBlocked = false;
-
-  var block = function block() {
-    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
-    var unblock = transitionManager.setPrompt(prompt);
-
-    if (!isBlocked) {
-      checkDOMListeners(1);
-      isBlocked = true;
-    }
-
-    return function () {
-      if (isBlocked) {
-        isBlocked = false;
-        checkDOMListeners(-1);
-      }
-
-      return unblock();
-    };
-  };
-
-  var listen = function listen(listener) {
-    var unlisten = transitionManager.appendListener(listener);
-    checkDOMListeners(1);
-
-    return function () {
-      checkDOMListeners(-1);
-      unlisten();
-    };
-  };
-
-  var history = {
-    length: globalHistory.length,
-    action: 'POP',
-    location: initialLocation,
-    createHref: createHref,
-    push: push,
-    replace: replace,
-    go: go,
-    goBack: goBack,
-    goForward: goForward,
-    block: block,
-    listen: listen
-  };
-
-  return history;
-};
-
-exports.default = createBrowserHistory;
-
-/***/ }),
-/* 75 */
-/*!********************************************************!*\
-  !*** ./node_modules/react-router-dom/es/HashRouter.js ***!
-  \********************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _warning = __webpack_require__(/*! warning */ 2);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _react = __webpack_require__(/*! react */ 0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(/*! prop-types */ 4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _createHashHistory = __webpack_require__(/*! history/createHashHistory */ 76);
-
-var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
-
-var _Router = __webpack_require__(/*! ./Router */ 68);
-
-var _Router2 = _interopRequireDefault(_Router);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
-  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-}
-
-/**
- * The public API for a <Router> that uses window.location.hash.
- */
-
-var HashRouter = function (_React$Component) {
-  _inherits(HashRouter, _React$Component);
-
-  function HashRouter() {
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, HashRouter);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.history = (0, _createHashHistory2.default)(_this.props), _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  HashRouter.prototype.componentWillMount = function componentWillMount() {
-    (0, _warning2.default)(!this.props.history, '<HashRouter> ignores the history prop. To use a custom history, ' + 'use `import { Router }` instead of `import { HashRouter as Router }`.');
-  };
-
-  HashRouter.prototype.render = function render() {
-    return _react2.default.createElement(_Router2.default, { history: this.history, children: this.props.children });
-  };
-
-  return HashRouter;
-}(_react2.default.Component);
-
-HashRouter.propTypes = {
-  basename: _propTypes2.default.string,
-  getUserConfirmation: _propTypes2.default.func,
-  hashType: _propTypes2.default.oneOf(['hashbang', 'noslash', 'slash']),
-  children: _propTypes2.default.node
-};
-
-exports.default = HashRouter;
-
-/***/ }),
-/* 76 */
-/*!***************************************************!*\
-  !*** ./node_modules/history/createHashHistory.js ***!
-  \***************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }return target;
-};
-
-var _warning = __webpack_require__(/*! warning */ 2);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _invariant = __webpack_require__(/*! invariant */ 5);
-
-var _invariant2 = _interopRequireDefault(_invariant);
-
-var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 46);
-
-var _PathUtils = __webpack_require__(/*! ./PathUtils */ 14);
-
-var _createTransitionManager = __webpack_require__(/*! ./createTransitionManager */ 47);
-
-var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
-
-var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 69);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var HashChangeEvent = 'hashchange';
-
-var HashPathCoders = {
-  hashbang: {
-    encodePath: function encodePath(path) {
-      return path.charAt(0) === '!' ? path : '!/' + (0, _PathUtils.stripLeadingSlash)(path);
-    },
-    decodePath: function decodePath(path) {
-      return path.charAt(0) === '!' ? path.substr(1) : path;
-    }
-  },
-  noslash: {
-    encodePath: _PathUtils.stripLeadingSlash,
-    decodePath: _PathUtils.addLeadingSlash
-  },
-  slash: {
-    encodePath: _PathUtils.addLeadingSlash,
-    decodePath: _PathUtils.addLeadingSlash
-  }
-};
-
-var getHashPath = function getHashPath() {
-  // We can't use window.location.hash here because it's not
-  // consistent across browsers - Firefox will pre-decode it!
-  var href = window.location.href;
-  var hashIndex = href.indexOf('#');
-  return hashIndex === -1 ? '' : href.substring(hashIndex + 1);
-};
-
-var pushHashPath = function pushHashPath(path) {
-  return window.location.hash = path;
-};
-
-var replaceHashPath = function replaceHashPath(path) {
-  var hashIndex = window.location.href.indexOf('#');
-
-  window.location.replace(window.location.href.slice(0, hashIndex >= 0 ? hashIndex : 0) + '#' + path);
-};
-
-var createHashHistory = function createHashHistory() {
-  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-  (0, _invariant2.default)(_DOMUtils.canUseDOM, 'Hash history needs a DOM');
-
-  var globalHistory = window.history;
-  var canGoWithoutReload = (0, _DOMUtils.supportsGoWithoutReloadUsingHash)();
-
-  var _props$getUserConfirm = props.getUserConfirmation,
-      getUserConfirmation = _props$getUserConfirm === undefined ? _DOMUtils.getConfirmation : _props$getUserConfirm,
-      _props$hashType = props.hashType,
-      hashType = _props$hashType === undefined ? 'slash' : _props$hashType;
-
-  var basename = props.basename ? (0, _PathUtils.stripTrailingSlash)((0, _PathUtils.addLeadingSlash)(props.basename)) : '';
-
-  var _HashPathCoders$hashT = HashPathCoders[hashType],
-      encodePath = _HashPathCoders$hashT.encodePath,
-      decodePath = _HashPathCoders$hashT.decodePath;
-
-  var getDOMLocation = function getDOMLocation() {
-    var path = decodePath(getHashPath());
-
-    (0, _warning2.default)(!basename || (0, _PathUtils.hasBasename)(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin ' + 'with the basename. Expected path "' + path + '" to begin with "' + basename + '".');
-
-    if (basename) path = (0, _PathUtils.stripBasename)(path, basename);
-
-    return (0, _LocationUtils.createLocation)(path);
-  };
-
-  var transitionManager = (0, _createTransitionManager2.default)();
-
-  var setState = function setState(nextState) {
-    _extends(history, nextState);
-
-    history.length = globalHistory.length;
-
-    transitionManager.notifyListeners(history.location, history.action);
-  };
-
-  var forceNextPop = false;
-  var ignorePath = null;
-
-  var handleHashChange = function handleHashChange() {
-    var path = getHashPath();
-    var encodedPath = encodePath(path);
-
-    if (path !== encodedPath) {
-      // Ensure we always have a properly-encoded hash.
-      replaceHashPath(encodedPath);
-    } else {
-      var location = getDOMLocation();
-      var prevLocation = history.location;
-
-      if (!forceNextPop && (0, _LocationUtils.locationsAreEqual)(prevLocation, location)) return; // A hashchange doesn't always == location change.
-
-      if (ignorePath === (0, _PathUtils.createPath)(location)) return; // Ignore this change; we already setState in push/replace.
-
-      ignorePath = null;
-
-      handlePop(location);
-    }
-  };
-
-  var handlePop = function handlePop(location) {
-    if (forceNextPop) {
-      forceNextPop = false;
-      setState();
-    } else {
-      var action = 'POP';
-
-      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-        if (ok) {
-          setState({ action: action, location: location });
-        } else {
-          revertPop(location);
-        }
-      });
-    }
-  };
-
-  var revertPop = function revertPop(fromLocation) {
-    var toLocation = history.location;
-
-    // TODO: We could probably make this more reliable by
-    // keeping a list of paths we've seen in sessionStorage.
-    // Instead, we just default to 0 for paths we don't know.
-
-    var toIndex = allPaths.lastIndexOf((0, _PathUtils.createPath)(toLocation));
-
-    if (toIndex === -1) toIndex = 0;
-
-    var fromIndex = allPaths.lastIndexOf((0, _PathUtils.createPath)(fromLocation));
-
-    if (fromIndex === -1) fromIndex = 0;
-
-    var delta = toIndex - fromIndex;
-
-    if (delta) {
-      forceNextPop = true;
-      go(delta);
-    }
-  };
-
-  // Ensure the hash is encoded properly before doing anything else.
-  var path = getHashPath();
-  var encodedPath = encodePath(path);
-
-  if (path !== encodedPath) replaceHashPath(encodedPath);
-
-  var initialLocation = getDOMLocation();
-  var allPaths = [(0, _PathUtils.createPath)(initialLocation)];
-
-  // Public interface
-
-  var createHref = function createHref(location) {
-    return '#' + encodePath(basename + (0, _PathUtils.createPath)(location));
-  };
-
-  var push = function push(path, state) {
-    (0, _warning2.default)(state === undefined, 'Hash history cannot push state; it is ignored');
-
-    var action = 'PUSH';
-    var location = (0, _LocationUtils.createLocation)(path, undefined, undefined, history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var path = (0, _PathUtils.createPath)(location);
-      var encodedPath = encodePath(basename + path);
-      var hashChanged = getHashPath() !== encodedPath;
-
-      if (hashChanged) {
-        // We cannot tell if a hashchange was caused by a PUSH, so we'd
-        // rather setState here and ignore the hashchange. The caveat here
-        // is that other hash histories in the page will consider it a POP.
-        ignorePath = path;
-        pushHashPath(encodedPath);
-
-        var prevIndex = allPaths.lastIndexOf((0, _PathUtils.createPath)(history.location));
-        var nextPaths = allPaths.slice(0, prevIndex === -1 ? 0 : prevIndex + 1);
-
-        nextPaths.push(path);
-        allPaths = nextPaths;
-
-        setState({ action: action, location: location });
-      } else {
-        (0, _warning2.default)(false, 'Hash history cannot PUSH the same path; a new entry will not be added to the history stack');
-
-        setState();
-      }
-    });
-  };
-
-  var replace = function replace(path, state) {
-    (0, _warning2.default)(state === undefined, 'Hash history cannot replace state; it is ignored');
-
-    var action = 'REPLACE';
-    var location = (0, _LocationUtils.createLocation)(path, undefined, undefined, history.location);
-
-    transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function (ok) {
-      if (!ok) return;
-
-      var path = (0, _PathUtils.createPath)(location);
-      var encodedPath = encodePath(basename + path);
-      var hashChanged = getHashPath() !== encodedPath;
-
-      if (hashChanged) {
-        // We cannot tell if a hashchange was caused by a REPLACE, so we'd
-        // rather setState here and ignore the hashchange. The caveat here
-        // is that other hash histories in the page will consider it a POP.
-        ignorePath = path;
-        replaceHashPath(encodedPath);
-      }
-
-      var prevIndex = allPaths.indexOf((0, _PathUtils.createPath)(history.location));
-
-      if (prevIndex !== -1) allPaths[prevIndex] = path;
-
-      setState({ action: action, location: location });
-    });
-  };
-
-  var go = function go(n) {
-    (0, _warning2.default)(canGoWithoutReload, 'Hash history go(n) causes a full page reload in this browser');
-
-    globalHistory.go(n);
-  };
-
-  var goBack = function goBack() {
-    return go(-1);
-  };
-
-  var goForward = function goForward() {
-    return go(1);
-  };
-
-  var listenerCount = 0;
-
-  var checkDOMListeners = function checkDOMListeners(delta) {
-    listenerCount += delta;
-
-    if (listenerCount === 1) {
-      (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleHashChange);
-    } else if (listenerCount === 0) {
-      (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleHashChange);
-    }
-  };
-
-  var isBlocked = false;
-
-  var block = function block() {
-    var prompt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
-    var unblock = transitionManager.setPrompt(prompt);
-
-    if (!isBlocked) {
-      checkDOMListeners(1);
-      isBlocked = true;
-    }
-
-    return function () {
-      if (isBlocked) {
-        isBlocked = false;
-        checkDOMListeners(-1);
-      }
-
-      return unblock();
-    };
-  };
-
-  var listen = function listen(listener) {
-    var unlisten = transitionManager.appendListener(listener);
-    checkDOMListeners(1);
-
-    return function () {
-      checkDOMListeners(-1);
-      unlisten();
-    };
-  };
-
-  var history = {
-    length: globalHistory.length,
-    action: 'POP',
-    location: initialLocation,
-    createHref: createHref,
-    push: push,
-    replace: replace,
-    go: go,
-    goBack: goBack,
-    goForward: goForward,
-    block: block,
-    listen: listen
-  };
-
-  return history;
-};
-
-exports.default = createHashHistory;
-
-/***/ }),
-/* 77 */
-/*!**********************************************************!*\
-  !*** ./node_modules/react-router-dom/es/MemoryRouter.js ***!
-  \**********************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _MemoryRouter = __webpack_require__(/*! react-router/es/MemoryRouter */ 42);
-
-var _MemoryRouter2 = _interopRequireDefault(_MemoryRouter);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _MemoryRouter2.default; // Written in this round about way for babel-transform-imports
-
-/***/ }),
-/* 78 */
-/*!*****************************************************!*\
-  !*** ./node_modules/react-router-dom/es/NavLink.js ***!
-  \*****************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _react = __webpack_require__(/*! react */ 0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(/*! prop-types */ 4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _Route = __webpack_require__(/*! ./Route */ 71);
-
-var _Route2 = _interopRequireDefault(_Route);
-
-var _Link = __webpack_require__(/*! ./Link */ 70);
-
-var _Link2 = _interopRequireDefault(_Link);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }return target;
-};
-
-var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
-  return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
-} : function (obj) {
-  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
-};
-
-function _objectWithoutProperties(obj, keys) {
-  var target = {};for (var i in obj) {
-    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
-  }return target;
-}
-
-/**
- * A <Link> wrapper that knows if it's "active" or not.
- */
-var NavLink = function NavLink(_ref) {
-  var to = _ref.to,
-      exact = _ref.exact,
-      strict = _ref.strict,
-      location = _ref.location,
-      activeClassName = _ref.activeClassName,
-      className = _ref.className,
-      activeStyle = _ref.activeStyle,
-      style = _ref.style,
-      getIsActive = _ref.isActive,
-      ariaCurrent = _ref.ariaCurrent,
-      rest = _objectWithoutProperties(_ref, ['to', 'exact', 'strict', 'location', 'activeClassName', 'className', 'activeStyle', 'style', 'isActive', 'ariaCurrent']);
-
-  return _react2.default.createElement(_Route2.default, {
-    path: (typeof to === 'undefined' ? 'undefined' : _typeof(to)) === 'object' ? to.pathname : to,
-    exact: exact,
-    strict: strict,
-    location: location,
-    children: function children(_ref2) {
-      var location = _ref2.location,
-          match = _ref2.match;
-
-      var isActive = !!(getIsActive ? getIsActive(match, location) : match);
-
-      return _react2.default.createElement(_Link2.default, _extends({
-        to: to,
-        className: isActive ? [className, activeClassName].filter(function (i) {
-          return i;
-        }).join(' ') : className,
-        style: isActive ? _extends({}, style, activeStyle) : style,
-        'aria-current': isActive && ariaCurrent
-      }, rest));
-    }
-  });
-};
-
-NavLink.propTypes = {
-  to: _Link2.default.propTypes.to,
-  exact: _propTypes2.default.bool,
-  strict: _propTypes2.default.bool,
-  location: _propTypes2.default.object,
-  activeClassName: _propTypes2.default.string,
-  className: _propTypes2.default.string,
-  activeStyle: _propTypes2.default.object,
-  style: _propTypes2.default.object,
-  isActive: _propTypes2.default.func,
-  ariaCurrent: _propTypes2.default.oneOf(['page', 'step', 'location', 'true'])
-};
-
-NavLink.defaultProps = {
-  activeClassName: 'active',
-  ariaCurrent: 'true'
-};
-
-exports.default = NavLink;
-
-/***/ }),
-/* 79 */
-/*!****************************************************!*\
-  !*** ./node_modules/react-router-dom/es/Prompt.js ***!
-  \****************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Prompt = __webpack_require__(/*! react-router/es/Prompt */ 48);
-
-var _Prompt2 = _interopRequireDefault(_Prompt);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Prompt2.default; // Written in this round about way for babel-transform-imports
-
-/***/ }),
-/* 80 */
-/*!******************************************************!*\
-  !*** ./node_modules/react-router-dom/es/Redirect.js ***!
-  \******************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Redirect = __webpack_require__(/*! react-router/es/Redirect */ 49);
-
-var _Redirect2 = _interopRequireDefault(_Redirect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Redirect2.default; // Written in this round about way for babel-transform-imports
-
-/***/ }),
-/* 81 */
-/*!**********************************************************!*\
-  !*** ./node_modules/react-router-dom/es/StaticRouter.js ***!
-  \**********************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _StaticRouter = __webpack_require__(/*! react-router/es/StaticRouter */ 56);
-
-var _StaticRouter2 = _interopRequireDefault(_StaticRouter);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _StaticRouter2.default; // Written in this round about way for babel-transform-imports
-
-/***/ }),
-/* 82 */
-/*!****************************************************!*\
-  !*** ./node_modules/react-router-dom/es/Switch.js ***!
-  \****************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Switch = __webpack_require__(/*! react-router/es/Switch */ 57);
-
-var _Switch2 = _interopRequireDefault(_Switch);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Switch2.default; // Written in this round about way for babel-transform-imports
-
-/***/ }),
-/* 83 */
-/*!*******************************************************!*\
-  !*** ./node_modules/react-router-dom/es/matchPath.js ***!
-  \*******************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _matchPath = __webpack_require__(/*! react-router/es/matchPath */ 17);
-
-var _matchPath2 = _interopRequireDefault(_matchPath);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _matchPath2.default; // Written in this round about way for babel-transform-imports
-
-/***/ }),
-/* 84 */
-/*!********************************************************!*\
-  !*** ./node_modules/react-router-dom/es/withRouter.js ***!
-  \********************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _withRouter = __webpack_require__(/*! react-router/es/withRouter */ 58);
-
-var _withRouter2 = _interopRequireDefault(_withRouter);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _withRouter2.default; // Written in this round about way for babel-transform-imports
-
 /***/ })
-],[29]);
+],[35]);
 //# sourceMappingURL=main.map
