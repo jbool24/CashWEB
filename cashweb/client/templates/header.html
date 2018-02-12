@@ -1,31 +1,29 @@
-  <header class="site-header">
+  <header class="fixed-top">
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
-    <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark" role="navigation">
       <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
+      <!-- <div class="navbar-header"> -->
+        <a class="navbar-brand ml-3" href="{{ url_for('main.home') }}"><img class="d-inline-block align-top" src="{{ url_for('static', filename='images/cashweb.png' )}}" width="25px"/> CashWeb</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-1" aria-controls="navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="{{ url_for('main.home') }}"><img class="d-inline-block align-top" src="{{ url_for('static', filename='images/cashweb.png' )}}"/> CashWeb</a>
-      </div>
+      <!-- </div> -->
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="navbar-collapse-1">
-        <ul class="navbar-nav">
-          <!-- <li class="nav-item" ><a class="nav-link" href="{{ url_for('main.about') }}">About</a></li> -->
-          {% if current_user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link" href="/cash">Dashboard</a></li>
-           <li class="nav-item"><a class="nav-link" href="{{ url_for('main.members') }}">Members</a></li>
-           <li class="nav-item"><a class="nav-link" href="{{ url_for('user.logout') }}">Logout</a></li>
-          {% else %}
-           <li class="nav-item"><a class="nav-link" href="{{ url_for('user.login') }}">Login</a></li>
-          {% endif %}
-        </ul>
-        <div id="top-right-menu"></div>
+      <div class="collapse navbar-collapse flex-row" id="navbar-collapse-1">
+          <ul class="navbar-nav mr-auto">
+            <!-- <li class="nav-item" ><a class="nav-link" href="{{ url_for('main.about') }}">About</a></li> -->
+            {% if current_user.is_authenticated %}
+              <li class="nav-item"><a class="nav-link" href="/cash">Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('main.members') }}">Members</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('user.logout') }}">Logout</a></li>
+            {% else %}
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('user.login') }}">Login</a></li>
+            {% endif %}
+          </ul>
+          <div id="top-right-menu"></div>
       </div>
       <!-- /.navbar-collapse -->
-    </div>
     <!-- /.container -->
   </nav>
 </header>

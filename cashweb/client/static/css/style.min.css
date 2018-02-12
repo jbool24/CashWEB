@@ -1,22 +1,2 @@
-* {
-  margin: 0px;
-  padding: 0px; }
-
-#page-wrapper {
-  margin-top: 45px; }
-
-#auth-block {
-  width: auto;
-  -webkit-box-shadow: 0 4px 8px 0 grey;
-  box-shadow: 0 4px 8px 0 grey; }
-
-.navbar-brand > img {
-  float: left;
-  padding-right: 5px;
-  max-width: 25px;
-  height: auto; }
-
-.site-content {
-  padding-top: 60px; }
-
+body,html{height:100%}
 /*# sourceMappingURL=../js/style.map*/
