@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 // Import components ==============================
-
-import Nav from './Nav';
+import Nav from './components/NavBar/Nav';
+import Sidebar from './components/Sidebar';
+import ContentComponent from './Content';
 //=================================================
 
 
@@ -17,9 +18,10 @@ class AppComponent extends React.Component {
 
     render() {
         return (
-            <div className='container'>
+            <div className='d-flex mt-4'>
                 { ReactDOM.createPortal(<Nav />, document.getElementById('top-right-menu')) }
-                <h1>HEELO APP WORLD</h1>
+                <Sidebar />
+                <ContentComponent />
             </div>
         );
     }

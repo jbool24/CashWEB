@@ -8,10 +8,10 @@ const commonConfigs = require('./base.js');
 module.exports = function(env) {
     return webpackMerge(commonConfigs(), {
         output: {
-          path: path.join(__dirname, '../../static/'),
-          filename: 'js/[name].bundle.js',
-          publicPath: '../../static/',
-          sourceMapFilename: 'js/[name].map'
+            path: path.join(__dirname, '../../static/'),
+            filename: 'js/[hash].[name].bundle.js',
+            publicPath: '../../static/',
+            sourceMapFilename: 'js/[name].map'
         },
         plugins: [
             new webpack.LoaderOptionsPlugin({
@@ -35,5 +35,5 @@ module.exports = function(env) {
                 comments: false
             })
         ]
-    })
-}
+    });
+};
