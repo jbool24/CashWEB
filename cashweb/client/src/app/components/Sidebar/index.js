@@ -1,38 +1,36 @@
+// REACT MODULES ==================================
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router';
 
-export default class Sidebar extends React.Component {
+// Import components ==============================
+import ListItem from './ListItem';
+// import SideNav, { Nav, NavText } from 'react-sidenav';
+// import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
+//=================================================
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            uiElementsCollapsed: true,
-            chartsElementsCollapsed: true,
-            multiLevelDropdownCollapsed: true,
-            thirdLevelDropdownCollapsed: true,
-            samplePagesCollapsed: true,
-        };
-    }
-
+// style={{background: '#2c3e50', color: '#FFF', width: 220}}
+class Sidebar extends React.Component {
     render() {
         return (
             <nav className="mr-5" role="navigation">
-                <div className="">
-                    <ul className="nav flex-column">
-                        <li className="nav-item sidebar-search">
-                            <div className="input-group custom-search-form">
-                                <input
-                                    className="form-control"
-                                    type="text"
-                                    placeholder="Search..."
-                                />
-                                <span className="input-group-btn">
-                                    <button className="btn btn-default" type="button">
-                                        <i className="fas fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            {/* <!-- /input-group --> */}
-                        </li>
+                <div className="sidebar">
+                    <ul className="nav flex-column pl-2">
+                        <ListItem />
+                        {/* <li className="nav-item sidebar-search">
+                                <div className="input-group custom-search-form">
+                                    <input
+                                        className="form-control"
+                                        type="text"
+                                        placeholder="Search..."
+                                    />
+                                    <span className="input-group-btn">
+                                        <button className="btn btn-default" type="button">
+                                            <i className="fas fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </li> */}
+
                         <li className="nav-item">
                             <a href="index.html"><i className="nav-link fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
@@ -114,3 +112,5 @@ export default class Sidebar extends React.Component {
         );
     }
 }
+
+export default Sidebar;
