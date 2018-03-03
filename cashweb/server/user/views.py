@@ -6,10 +6,9 @@ import os
 from flask import render_template, Blueprint, url_for, redirect, flash, request
 from flask_security import login_required, login_user, logout_user
 from flask_security import LoginForm, RegisterForm
-from cashweb.server import db, app, user_datastore
+from ..extentions import db, security, user_datastore
 # from cashweb.server.user.forms import LoginForm, RegisterForm
-from cashweb.server.models import User
-from cashweb.server import security
+from ..models import User
 
 
 ################

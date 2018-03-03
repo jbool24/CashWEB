@@ -8,10 +8,10 @@
 
 import os
 import datetime
-from flask_security import UserMixin, RoleMixin, AnonymousUser
+from flask_security import UserMixin, AnonymousUser
 from flask_security.utils import encrypt_password
-from cashweb.server import app, db
-from ..models.roles import roles_users
+from ..extentions import db
+from .roles import roles_users
 
 
 class User(db.Model, UserMixin):

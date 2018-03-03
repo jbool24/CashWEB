@@ -16,7 +16,6 @@
             {% if current_user.is_authenticated %}
               <li class="nav-item"><a class="nav-link" href="/cash">Dashboard</a></li>
               <li class="nav-item"><a class="nav-link" href="{{ url_for('main.members') }}">Members</a></li>
-              <li class="nav-item"><a class="nav-link" href="{{ url_for('user.logout') }}">Logout</a></li>
             {% else %}
               <li class="nav-item"><a class="nav-link" href="{{ url_for('user.login') }}">Login</a></li>
             {% endif %}

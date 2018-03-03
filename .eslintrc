@@ -1,0 +1,59 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    }
+  },
+  "globals": {
+    "Promise": true,
+    "React": true
+  },
+  "plugins": [
+    "react",
+    "babel"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "babel/new-cap": 1,
+    "babel/object-curly-spacing": 1,
+    "babel/no-invalid-this": 1,
+    "babel/semi": 1,
+    "indent": [
+      "error",
+      4
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "eqeqeq": [
+      "error",
+      "always"
+    ],
+    "quotes": [
+      "warn",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "newline-per-chained-call": [
+      "error",
+      { "ignoreChainWithDepth": 3 }
+    ],
+  }
+}

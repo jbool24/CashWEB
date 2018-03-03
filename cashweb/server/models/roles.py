@@ -7,7 +7,7 @@
 # @License: MIT
 
 from flask_security import RoleMixin
-from cashweb.server import db
+from ..extentions import db
 
 
 roles_users = db.Table(

@@ -1,0 +1,7 @@
+{% extends "_base.html" %}
+{% block content %}
+<div id="app_shell" class='mt-5'></div>
+{% endblock %}
+{% block js %}
+  <script src="{{ asset_url_for('main.js') }}" id='bigboy' type="text/javascript"></script>
+{% endblock %}

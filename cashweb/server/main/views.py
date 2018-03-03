@@ -7,6 +7,7 @@
 
 from flask import render_template, Blueprint
 from flask_security import login_required
+from flask_cors import cross_origin
 ################
 #### config ####
 ################
@@ -32,10 +33,11 @@ def about():
 @main_blueprint.route('/members')
 @login_required
 def members():
-    return render_template('app_shell/members.html')
+    return render_template('shell/app.html')
 
 
 @main_blueprint.route('/cash')
+@cross_origin()
 @login_required
 def shell():
-    return render_template('app_shell/shell.html')
+    return render_template('shell/app.html')

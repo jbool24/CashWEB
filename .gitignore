@@ -12,6 +12,5 @@ __pycache__
 
 node_modules
 
-cashweb/client/sbadmin-template
-
+# Databases
 *.db

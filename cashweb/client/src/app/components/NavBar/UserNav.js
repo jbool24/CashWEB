@@ -25,7 +25,7 @@ export default function UserNav(props) {
                 </li>
                 <li className="divider"></li>
                 <li>
-                    <a href="login.html">
+                    <a href="/logout">
                         <i className="fa fa-sign-out fa-fw"></i> Logout
                     </a>
                 </li>
