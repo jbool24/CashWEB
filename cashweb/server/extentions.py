@@ -46,6 +46,8 @@ def register_extentions(app):
 #####################
 # Uncomment to use flask-security
 def register_security(app):
+    global user_datastore
+    global security
     from .models import User, Role, Anonymous
     user_datastore = SQLAlchemyUserDatastore(db, User, Role)
     security = Security(app, user_datastore, anonymous_user=Anonymous)

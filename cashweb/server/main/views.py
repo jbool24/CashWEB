@@ -36,8 +36,9 @@ def members():
     return render_template('shell/app.html')
 
 
-@main_blueprint.route('/cash')
+@main_blueprint.route('/cash/', defaults={'path': ''})
+@main_blueprint.route('/cash/<path:path>')
 @cross_origin()
 @login_required
-def shell():
+def shell(path):
     return render_template('shell/app.html')

@@ -12,6 +12,8 @@ from .app_factory import create_app
 app = create_app()
 CORS(app)
 
+from .extentions import db
+
 COV = coverage.coverage(
     branch=True,
     include='./*',
@@ -91,38 +93,36 @@ def dev(host, port, debug):
 
 
 
-#
-# @app.cli.command
-# def create_db():
-#     """Creates the db tables."""
-#     db.create_all()
-#
-#
-# @app.cli.command
-# def drop_db():
-#     """Drops the db tables."""
-#     db.drop_all()
-#
-#
-# @app.cli.command
-# def create_admin():
-#     from cashweb.server.extentions import user_datastore
-#
-#     """Creates the admin user."""
-#     role = user_datastore.create_role(name='admin',
-#                                       description='Application Administrator')
-#     user = user_datastore.create_user(email='admin@email.com',
-#                                       password=ADMIN['ADMIN_PW'],
-#                                       active=1)
-#     user_datastore.add_role_to_user(user, role)
-#     db.session.commit()
-#
-#
-# @app.cli.command
-# def create_data():
-#     """Creates sample data."""
-#     pass
-#
-#
-# if __name__ == '__main__':
-#     app.cli.run()
+@app.cli.command()
+def create_db():
+    """Creates the db tables."""
+    db.create_all()
+
+@app.cli.command()
+def drop_db():
+    """Drops the db tables."""
+    db.drop_all()
+
+
+@app.cli.command()
+def create_admin():
+    from cashweb.server.extentions import user_datastore
+    from .config import ADMIN
+    """Creates the admin user."""
+    role = user_datastore.create_role(name='admin',
+                                      description='Application Administrator')
+    user = user_datastore.create_user(email='admin@email.com',
+                                      password=ADMIN['ADMIN_PW'],
+                                      active=1)
+    user_datastore.add_role_to_user(user, role)
+    db.session.commit()
+
+
+@app.cli.command()
+def create_data():
+    """Creates sample data."""
+    pass
+
+
+if __name__ == '__main__':
+    app.cli.run()
