@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 // import '../styles/semantic.less';
 
 // Import components ==============================
@@ -24,7 +25,7 @@ class AppComponent extends React.Component {
             <div className='d-flex mt-2'>
                 { ReactDOM.createPortal(<Nav />, document.getElementById('top-right-menu')) }
                 <Sidebar />
-                <ContentArea />
+                <ContentArea/>
             </div>
         );
     }

@@ -16,8 +16,14 @@ const BookMenuItem = (props) => (
     </Menu.Item>
 );
 
-const MenuItem = () => (
-    <h1>HI</h1>
+const AccountsMenuItem = (props) => (
+    <Menu.Item
+        name={props.title}
+        as = {NavLink}
+        to={`/account/${props.id}`}
+        activeClassName="active">
+        {props.title}
+    </Menu.Item>
 );
 
 const MenuWithSubItem = () => (
@@ -30,9 +36,5 @@ const MenuWithSubItem = () => (
     </Dropdown>
 );
 
-MenuItem.protoTypes = {
-    to: PropTypes.string,
-    name: PropTypes.string
-};
 
-export { BookMenuItem, MenuItem, MenuWithSubItem };
+export { BookMenuItem, AccountsMenuItem, MenuWithSubItem };
