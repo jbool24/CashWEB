@@ -3,55 +3,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { NavLink } from 'react-router-dom';
+import { Menu, Dropdown, Icon } from 'semantic-ui-react';
 
 
-const ListItem = () => (
-    <h1></h1>
+const BookMenuItem = (props) => (
+    <Menu.Item
+        name={props.title}
+        as = {NavLink}
+        to={`/book/${props.id}`}
+        activeClassName="active">
+        {props.title}
+    </Menu.Item>
 );
 
-const SearchItem = () => (
-    <li className="nav-item sidebar-search p-2">
-        <div className="input-group custom-search-form">
-            <input
-                className="form-control px-1"
-                type="text"
-                placeholder="Search..."
-            />
-            <span className="input-group-btn">
-                <button className="btn btn-default" type="button">
-                    <i className="fa fa-search"></i>
-                </button>
-            </span>
-        </div>
-    </li>
+const MenuItem = () => (
+    <h1>HI</h1>
 );
 
-const MenuItem = (props) => (
-    <li className="nav-item p-2">
-        <NavLink to={props.to} className='nav-link'>
-            { props.icon && <i className={`fa fa-${props.icon} fa-fw p-1`}></i> }
-            { props.name }
-        </NavLink>
-    </li>
-);
-
-const MenuWithSubItem = (props) => (
-    <li className="nav-item p-2">
-        <NavLink to={props.to} className='nav-link'>
-            { props.icon && <i className={`fa fa-${props.icon} fa-fw p-1`}></i> }
-            { props.name }
-            <span className="fa arrow"></span>
-        </NavLink>
-        <ul className="nav nav-second-level">
-            {props.children}
-        </ul>
-    </li>
+const MenuWithSubItem = () => (
+    <Dropdown item text='More'>
+        <Dropdown.Menu>
+            <Dropdown.Item icon='edit' text='Edit Profile'/>
+            <Dropdown.Item icon='globe' text='Choose Language'/>
+            <Dropdown.Item icon='settings' text='Account Settings'/>
+        </Dropdown.Menu>
+    </Dropdown>
 );
 
 MenuItem.protoTypes = {
     to: PropTypes.string,
-    name: PropTypes.string,
-    icon: PropTypes.string
+    name: PropTypes.string
 };
 
-export { ListItem, SearchItem, MenuItem, MenuWithSubItem };
+export { BookMenuItem, MenuItem, MenuWithSubItem };
