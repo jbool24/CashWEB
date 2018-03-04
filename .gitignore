@@ -1,16 +1,22 @@
 # Editor files
 .vscode
 
+
 # Environment
 venv
+.venv
 .env
+
 
 # Python Files
 __pycache__
 *.py[cod]
 
 
+# Node/JS Files
 node_modules
+.tern-project
+
 
 # Databases
 *.db
