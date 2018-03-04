@@ -3,6 +3,7 @@
 
 
 # Environment
+manifest.json
 venv
 .venv
 .env
