@@ -32,7 +32,7 @@ class AppComponent extends React.Component {
 
 
 const App = () => (
-    <Router>
+    <Router basename='/cash'>
         <ErrorBoundary>
             <Route path="/" component={AppComponent}></Route>
         </ErrorBoundary>
